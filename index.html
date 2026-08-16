@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="Lean Mass" />
-  <title>Lean Mass Tracker V1.2</title>
+  <title>Lean Mass Tracker V1.3</title>
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="apple-touch-icon" href="icons/icon-180.png" />
   <link rel="stylesheet" href="styles.css" />
@@ -15,7 +15,7 @@
 <body>
   <header class="topbar">
     <div>
-      <div class="eyebrow">12-WEEK PROGRAMME · V1.2</div>
+      <div class="eyebrow">12-WEEK PROGRAMME · V1.3</div>
       <h1>Lean Mass Tracker</h1>
     </div>
     <div class="header-actions"><button id="bellBtn" class="round-btn" aria-label="Reminders">◔</button><button id="todayBtn" class="soft-btn">Today</button></div>
@@ -50,8 +50,6 @@
         <label>Calories<input id="mealKcal" type="number" min="0" step="1" /></label>
         <label>Protein (g)<input id="mealProtein" type="number" min="0" step="0.5" /></label>
       </div>
-      <label>Meal photo (optional)<div class="photo-picker"><input id="mealPhoto" type="file" accept="image/*" capture="environment" /><span>📷 Take or choose photo</span></div></label>
-      <div id="photoPreview" class="photo-preview hidden"></div>
       <label>Notes<input id="mealNotes" type="text" placeholder="optional" /></label>
     </form>
   </dialog>
