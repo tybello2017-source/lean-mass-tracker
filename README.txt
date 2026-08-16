@@ -11,3 +11,11 @@ Photo-Rich UI upgrade:
 Deployment:
 Upload the contents of this folder to the existing GitHub Pages repository root and commit.
 The Pages workflow redeploys automatically.
+
+
+V1.3 corrected photo build
+- Removed keyword-based meal-photo guessing that could show the wrong food.
+- Every food card now has Add / Replace Photo using camera or photo library.
+- User meal-photo replacements are stored locally in IndexedDB and included in backup.
+- Workout photography is shown only for verified matching exercises.
+- Unverified workout photos are replaced by the correct exercise-specific form guide, preventing misleading exercise imagery.
