@@ -1,0 +1,753 @@
+{
+  "meals": [
+    {
+      "name": "3 boiled eggs + 200 ml whole milk",
+      "kcal": 350,
+      "protein": 25,
+      "notes": "Breakfast estimate"
+    },
+    {
+      "name": "Oats 60 g + 250 ml whole milk + banana",
+      "kcal": 500,
+      "protein": 17,
+      "notes": "Breakfast estimate"
+    },
+    {
+      "name": "3 eggs + 4 slices bread + 200 ml whole milk",
+      "kcal": 600,
+      "protein": 32,
+      "notes": "Breakfast estimate"
+    },
+    {
+      "name": "Akara + pap/ogi with milk + 2 eggs",
+      "kcal": 650,
+      "protein": 28,
+      "notes": "Breakfast estimate"
+    },
+    {
+      "name": "Moi moi (1 portion)",
+      "kcal": 250,
+      "protein": 12,
+      "notes": "Estimate; serving size varies"
+    },
+    {
+      "name": "Banana + handful groundnuts",
+      "kcal": 300,
+      "protein": 8,
+      "notes": "Snack estimate"
+    },
+    {
+      "name": "Peanut butter sandwich + yoghurt",
+      "kcal": 400,
+      "protein": 16,
+      "notes": "Snack estimate"
+    },
+    {
+      "name": "Whole milk 250 ml + banana",
+      "kcal": 250,
+      "protein": 9,
+      "notes": "Snack estimate"
+    },
+    {
+      "name": "Beans porridge + chicken",
+      "kcal": 850,
+      "protein": 42,
+      "notes": "Office lunch estimate"
+    },
+    {
+      "name": "Beef stir-fry + basmati rice",
+      "kcal": 825,
+      "protein": 43,
+      "notes": "Office lunch estimate"
+    },
+    {
+      "name": "Stir-fry chicken + basmati rice",
+      "kcal": 875,
+      "protein": 45,
+      "notes": "Office lunch estimate"
+    },
+    {
+      "name": "Honey mustard chicken + mashed potatoes + veggies",
+      "kcal": 825,
+      "protein": 43,
+      "notes": "Office lunch estimate"
+    },
+    {
+      "name": "Creamy chicken broccoli penne pasta",
+      "kcal": 900,
+      "protein": 43,
+      "notes": "Office lunch estimate"
+    },
+    {
+      "name": "Jollof rice + chicken",
+      "kcal": 750,
+      "protein": 38,
+      "notes": "Typical portion estimate"
+    },
+    {
+      "name": "Jollof rice + chicken + fried plantain",
+      "kcal": 950,
+      "protein": 40,
+      "notes": "Typical portion estimate"
+    },
+    {
+      "name": "White rice + vegetable/egg sauce + chicken",
+      "kcal": 800,
+      "protein": 42,
+      "notes": "Typical portion estimate"
+    },
+    {
+      "name": "White rice + spinach stew + beef",
+      "kcal": 750,
+      "protein": 35,
+      "notes": "Typical portion estimate"
+    },
+    {
+      "name": "Ewa Agoyin + plantain + sauce",
+      "kcal": 800,
+      "protein": 25,
+      "notes": "Typical portion estimate"
+    },
+    {
+      "name": "Beans porridge + fried plantain",
+      "kcal": 750,
+      "protein": 24,
+      "notes": "Typical portion estimate"
+    },
+    {
+      "name": "Yam + egg sauce + fish",
+      "kcal": 750,
+      "protein": 38,
+      "notes": "Typical portion estimate"
+    },
+    {
+      "name": "Eba/semo + egusi + chicken/fish",
+      "kcal": 850,
+      "protein": 40,
+      "notes": "Typical portion estimate"
+    },
+    {
+      "name": "Pounded yam + egusi + chicken/fish",
+      "kcal": 950,
+      "protein": 42,
+      "notes": "Typical portion estimate"
+    },
+    {
+      "name": "Coconut rice + chicken",
+      "kcal": 800,
+      "protein": 38,
+      "notes": "Typical portion estimate"
+    },
+    {
+      "name": "White rice + catfish pepper soup",
+      "kcal": 700,
+      "protein": 40,
+      "notes": "Typical portion estimate"
+    },
+    {
+      "name": "Fried rice + chicken",
+      "kcal": 800,
+      "protein": 38,
+      "notes": "Typical portion estimate"
+    },
+    {
+      "name": "Chicken dodo",
+      "kcal": 850,
+      "protein": 42,
+      "notes": "Typical portion estimate"
+    },
+    {
+      "name": "Moi moi + chicken",
+      "kcal": 550,
+      "protein": 42,
+      "notes": "Typical portion estimate"
+    },
+    {
+      "name": "Serious Mass - 1 scoop",
+      "kcal": 631,
+      "protein": 25,
+      "notes": "168 g powder; user's label"
+    },
+    {
+      "name": "Serious Mass - 3/4 scoop",
+      "kcal": 473,
+      "protein": 18.75,
+      "notes": "Approximate proportional calculation"
+    },
+    {
+      "name": "Serious Mass - 1/2 scoop",
+      "kcal": 316,
+      "protein": 12.5,
+      "notes": "Approximate proportional calculation"
+    },
+    {
+      "name": "Other / Manual Entry",
+      "kcal": 0,
+      "protein": 0,
+      "notes": "Enter kcal/protein manually in Daily Log override cells"
+    },
+    {
+      "name": "Moi moi - large office portion / 2 pieces",
+      "kcal": 500,
+      "protein": 22,
+      "notes": "Estimate from actual S\u00f4 Caf\u00e9 serving photographed 14-Aug-2026; likely range ~450\u2013550 kcal and ~20\u201325 g protein."
+    },
+    {
+      "name": "Yam + egg sauce",
+      "kcal": 750,
+      "protein": 30,
+      "notes": "Home meal estimate; portion/oil can vary."
+    },
+    {
+      "name": "Pounded yam + okro soup + chicken",
+      "kcal": 850,
+      "protein": 40,
+      "notes": "Typical home portion estimate."
+    },
+    {
+      "name": "Pounded yam + okro soup + beef",
+      "kcal": 850,
+      "protein": 36,
+      "notes": "Typical home portion estimate."
+    },
+    {
+      "name": "Pounded yam + okro soup + goat meat",
+      "kcal": 870,
+      "protein": 36,
+      "notes": "Typical home portion estimate."
+    },
+    {
+      "name": "Pounded yam + okro soup + cowtail",
+      "kcal": 950,
+      "protein": 32,
+      "notes": "Cowtail can be higher-fat; portion varies."
+    },
+    {
+      "name": "Pounded yam + okro soup + fish",
+      "kcal": 820,
+      "protein": 38,
+      "notes": "Typical home portion estimate."
+    },
+    {
+      "name": "Pounded yam + vegetable soup + chicken",
+      "kcal": 900,
+      "protein": 42,
+      "notes": "Typical home portion estimate."
+    },
+    {
+      "name": "Pounded yam + vegetable soup + beef",
+      "kcal": 900,
+      "protein": 38,
+      "notes": "Typical home portion estimate."
+    },
+    {
+      "name": "Pounded yam + vegetable soup + goat meat",
+      "kcal": 920,
+      "protein": 38,
+      "notes": "Typical home portion estimate."
+    },
+    {
+      "name": "Pounded yam + vegetable soup + cowtail",
+      "kcal": 1000,
+      "protein": 34,
+      "notes": "Cowtail can be higher-fat; portion varies."
+    },
+    {
+      "name": "Pounded yam + vegetable soup + fish",
+      "kcal": 870,
+      "protein": 40,
+      "notes": "Typical home portion estimate."
+    },
+    {
+      "name": "Pounded yam + bitterleaf soup + chicken",
+      "kcal": 900,
+      "protein": 42,
+      "notes": "Typical home portion estimate."
+    },
+    {
+      "name": "Pounded yam + bitterleaf soup + beef",
+      "kcal": 900,
+      "protein": 38,
+      "notes": "Typical home portion estimate."
+    },
+    {
+      "name": "Pounded yam + bitterleaf soup + goat meat",
+      "kcal": 920,
+      "protein": 38,
+      "notes": "Typical home portion estimate."
+    },
+    {
+      "name": "Pounded yam + bitterleaf soup + cowtail",
+      "kcal": 1000,
+      "protein": 34,
+      "notes": "Cowtail can be higher-fat; portion varies."
+    },
+    {
+      "name": "Pounded yam + bitterleaf soup + fish",
+      "kcal": 870,
+      "protein": 40,
+      "notes": "Typical home portion estimate."
+    },
+    {
+      "name": "Corn swallow + okro soup + chicken/beef/goat/fish",
+      "kcal": 750,
+      "protein": 36,
+      "notes": "Generic mixed-protein estimate; choose manual override for cowtail/large portions."
+    },
+    {
+      "name": "Corn swallow + vegetable soup + chicken/beef/goat/fish",
+      "kcal": 800,
+      "protein": 38,
+      "notes": "Generic mixed-protein estimate."
+    },
+    {
+      "name": "Corn swallow + egusi soup + chicken/beef/goat/fish",
+      "kcal": 900,
+      "protein": 40,
+      "notes": "Egusi is calorie-dense."
+    },
+    {
+      "name": "Corn swallow + bitterleaf soup + chicken/beef/goat/fish",
+      "kcal": 800,
+      "protein": 38,
+      "notes": "Generic mixed-protein estimate."
+    },
+    {
+      "name": "Millet swallow + okro soup + chicken/beef/goat/fish",
+      "kcal": 750,
+      "protein": 36,
+      "notes": "Generic mixed-protein estimate."
+    },
+    {
+      "name": "Millet swallow + vegetable soup + chicken/beef/goat/fish",
+      "kcal": 800,
+      "protein": 38,
+      "notes": "Generic mixed-protein estimate."
+    },
+    {
+      "name": "Millet swallow + egusi soup + chicken/beef/goat/fish",
+      "kcal": 900,
+      "protein": 40,
+      "notes": "Egusi is calorie-dense."
+    },
+    {
+      "name": "Millet swallow + bitterleaf soup + chicken/beef/goat/fish",
+      "kcal": 800,
+      "protein": 38,
+      "notes": "Generic mixed-protein estimate."
+    },
+    {
+      "name": "Fried yam - snack/side portion",
+      "kcal": 400,
+      "protein": 5,
+      "notes": "Oil absorption varies considerably."
+    },
+    {
+      "name": "Fried yam - meal portion",
+      "kcal": 650,
+      "protein": 8,
+      "notes": "Oil absorption varies considerably."
+    },
+    {
+      "name": "Boiled potato",
+      "kcal": 300,
+      "protein": 7,
+      "notes": "Approx. substantial side/meal portion."
+    },
+    {
+      "name": "Boiled sweet potato",
+      "kcal": 350,
+      "protein": 5,
+      "notes": "Approx. substantial portion."
+    },
+    {
+      "name": "Fried sweet potato",
+      "kcal": 550,
+      "protein": 6,
+      "notes": "Oil absorption varies."
+    },
+    {
+      "name": "French fries",
+      "kcal": 500,
+      "protein": 6,
+      "notes": "Typical medium-large portion estimate."
+    },
+    {
+      "name": "Jollof basmati rice + chicken",
+      "kcal": 800,
+      "protein": 40,
+      "notes": "Typical home portion estimate."
+    },
+    {
+      "name": "Jollof basmati rice + beef",
+      "kcal": 800,
+      "protein": 35,
+      "notes": "Typical home portion estimate."
+    },
+    {
+      "name": "Basmati rice + stew + chicken",
+      "kcal": 750,
+      "protein": 40,
+      "notes": "Typical home portion estimate."
+    },
+    {
+      "name": "Basmati rice + stew + beef",
+      "kcal": 750,
+      "protein": 35,
+      "notes": "Typical home portion estimate."
+    },
+    {
+      "name": "Cowtail pepper soup",
+      "kcal": 500,
+      "protein": 30,
+      "notes": "Fat/calories vary by amount of cowtail."
+    },
+    {
+      "name": "Catfish pepper soup",
+      "kcal": 450,
+      "protein": 40,
+      "notes": "Typical bowl estimate."
+    },
+    {
+      "name": "Chicken suya - half whole chicken",
+      "kcal": 650,
+      "protein": 55,
+      "notes": "Assumes one whole chicken shared equally by two people; skin/oil varies."
+    },
+    {
+      "name": "Grilled tilapia fish",
+      "kcal": 450,
+      "protein": 55,
+      "notes": "Approx. one substantial whole/large serving."
+    },
+    {
+      "name": "Grilled catfish",
+      "kcal": 500,
+      "protein": 55,
+      "notes": "Approx. one substantial serving; size varies."
+    },
+    {
+      "name": "Beans + sweet potato porridge",
+      "kcal": 650,
+      "protein": 22,
+      "notes": "Home meal estimate."
+    },
+    {
+      "name": "Toasted white bread 4 slices + fried egg",
+      "kcal": 550,
+      "protein": 24,
+      "notes": "Assumes about 2 fried eggs; oil/butter varies."
+    },
+    {
+      "name": "Toasted white bread 4 slices + mayonnaise",
+      "kcal": 500,
+      "protein": 10,
+      "notes": "Mayonnaise quantity strongly affects calories."
+    },
+    {
+      "name": "Plantain chips - small snack pack",
+      "kcal": 250,
+      "protein": 2,
+      "notes": "Approx. 50 g; check package label when available."
+    },
+    {
+      "name": "Plantain chips - larger snack portion",
+      "kcal": 400,
+      "protein": 3,
+      "notes": "Approx. 80 g; check package label when available."
+    },
+    {
+      "name": "Bean porridge - no fried plantain",
+      "kcal": 550,
+      "protein": 22,
+      "notes": "Typical home/canteen portion estimate."
+    },
+    {
+      "name": "Spaghetti + tomato stew + 2 pieces meat - large plate",
+      "kcal": 1200,
+      "protein": 55,
+      "notes": "Actual dinner estimate from 14-Aug-2026 photo; likely ~1,100\u20131,300 kcal and ~50\u201358 g protein."
+    },
+    {
+      "name": "Spaghetti + tomato stew + chicken",
+      "kcal": 950,
+      "protein": 45,
+      "notes": "Typical home portion estimate; use manual override for unusual portions."
+    },
+    {
+      "name": "Spaghetti + tomato stew + beef",
+      "kcal": 950,
+      "protein": 40,
+      "notes": "Typical home portion estimate; use manual override for unusual portions."
+    },
+    {
+      "name": "Kingrey Greek Yoghurt Unsweetened - 200 ml",
+      "kcal": 196,
+      "protein": 19,
+      "notes": "Label-derived: per 100 ml = 98 kcal, 9.5 g protein, 5.5 g carbs. Typical 200 ml serving = 196 kcal, 19 g protein, 11 g carbs."
+    },
+    {
+      "name": "Kingrey Greek Yoghurt Unsweetened - 100 ml",
+      "kcal": 98,
+      "protein": 9.5,
+      "notes": "Label value per 100 ml; useful for smaller/larger portions."
+    },
+    {
+      "name": "3 boiled eggs + yoghurt(200ml) + Pap/ogi",
+      "kcal": 650,
+      "protein": 42,
+      "notes": "Breakfast estimate"
+    },
+    {
+      "name": "White rice + Beans+ tomatoe stew + beef",
+      "kcal": 900,
+      "protein": 45,
+      "notes": "Home meal estimate."
+    },
+    {
+      "name": "White rice + Beans+ tomatoe stew + chicken",
+      "kcal": 950,
+      "protein": 52,
+      "notes": "Home meal estimate."
+    },
+    {
+      "name": "White rice + Beans+ tomatoe stew + 2 pieces chicken",
+      "kcal": 1100,
+      "protein": 65,
+      "notes": "Home meal estimate."
+    },
+    {
+      "name": "White rice + beans + tomato stew + 2 beef + fried plantain",
+      "kcal": 1250,
+      "protein": 48,
+      "notes": "Home meal estimate."
+    },
+    {
+      "name": "White rice + beans + tomato stew + 1 chicken + fried plantain",
+      "kcal": 1300,
+      "protein": 55,
+      "notes": "Home meal estimate."
+    },
+    {
+      "name": "White rice + beans + tomato stew + 2 chicken + fried plantain",
+      "kcal": 1450,
+      "protein": 68,
+      "notes": "Home meal estimate."
+    }
+  ],
+  "workouts": {
+    "A": [
+      {
+        "exercise": "Goblet squat",
+        "sets": 3,
+        "reps": "8\u201312",
+        "note": "Add weight after 12 clean reps on all sets."
+      },
+      {
+        "exercise": "Barbell bench press",
+        "sets": 3,
+        "reps": "8\u201312",
+        "note": "Do not grind reps alone; use a spotter/safeties if available."
+      },
+      {
+        "exercise": "One-arm dumbbell row",
+        "sets": 3,
+        "reps": "8\u201312/side",
+        "note": "Home replacement for cable row/pulldown."
+      },
+      {
+        "exercise": "Barbell Romanian deadlift",
+        "sets": 3,
+        "reps": "8\u201310",
+        "note": "Controlled lowering; neutral back."
+      },
+      {
+        "exercise": "Dumbbell shoulder press",
+        "sets": 2,
+        "reps": "8\u201312",
+        "note": ""
+      },
+      {
+        "exercise": "Dumbbell curl",
+        "sets": 2,
+        "reps": "10\u201315",
+        "note": ""
+      }
+    ],
+    "B": [
+      {
+        "exercise": "Bulgarian split squat",
+        "sets": 3,
+        "reps": "8\u201312/leg",
+        "note": "Hold dumbbells as strength improves."
+      },
+      {
+        "exercise": "Barbell bent-over row",
+        "sets": 3,
+        "reps": "8\u201312",
+        "note": ""
+      },
+      {
+        "exercise": "Incline dumbbell press",
+        "sets": 3,
+        "reps": "8\u201312",
+        "note": "If bench incline is stable."
+      },
+      {
+        "exercise": "Barbell/dumbbell hip thrust",
+        "sets": 3,
+        "reps": "8\u201312",
+        "note": ""
+      },
+      {
+        "exercise": "Dumbbell lateral raise",
+        "sets": 2,
+        "reps": "12\u201315",
+        "note": ""
+      },
+      {
+        "exercise": "DB overhead triceps extension",
+        "sets": 2,
+        "reps": "10\u201315",
+        "note": ""
+      }
+    ],
+    "C": [
+      {
+        "exercise": "Dumbbell reverse lunge",
+        "sets": 3,
+        "reps": "8\u201312/leg",
+        "note": "Safer than heavy barbell squat without a squat rack."
+      },
+      {
+        "exercise": "Barbell Romanian deadlift",
+        "sets": 3,
+        "reps": "8\u201310",
+        "note": ""
+      },
+      {
+        "exercise": "Barbell bench press",
+        "sets": 3,
+        "reps": "8\u201310",
+        "note": ""
+      },
+      {
+        "exercise": "One-arm dumbbell row",
+        "sets": 3,
+        "reps": "8\u201312/side",
+        "note": ""
+      },
+      {
+        "exercise": "Dumbbell shoulder press",
+        "sets": 2,
+        "reps": "8\u201312",
+        "note": ""
+      },
+      {
+        "exercise": "DB curl + triceps extension",
+        "sets": 2,
+        "reps": "10\u201315 each",
+        "note": ""
+      },
+      {
+        "exercise": "Plank",
+        "sets": 2,
+        "reps": "30\u201360 sec",
+        "note": ""
+      }
+    ]
+  },
+  "setup": {
+    "startWeight": 63,
+    "goalWeight": 68,
+    "height": 178,
+    "age": 45,
+    "calorieTargets": [
+      {
+        "weeks": "1-2",
+        "kcal": 2500
+      },
+      {
+        "weeks": "3-4",
+        "kcal": 2600
+      },
+      {
+        "weeks": "5-8",
+        "kcal": 2650
+      },
+      {
+        "weeks": "9-12",
+        "kcal": 2700
+      }
+    ],
+    "proteinTarget": 105,
+    "weeklyGainLow": 0.2,
+    "weeklyGainHigh": 0.4
+  },
+  "historical": {
+    "2026-08-14": {
+      "weight": null,
+      "sleep": 6.21,
+      "energy": "Low",
+      "waist": null,
+      "workout": "Rest",
+      "training": "No",
+      "meals": [
+        {
+          "slot": "Breakfast",
+          "name": "3 boiled eggs + 200 ml whole milk",
+          "kcal": 350,
+          "protein": 25
+        },
+        {
+          "slot": "Snack 1",
+          "name": "Moi moi - large office portion / 2 pieces",
+          "kcal": 500,
+          "protein": 22
+        },
+        {
+          "slot": "Dinner",
+          "name": "Spaghetti + tomato stew + 2 pieces meat - large plate",
+          "kcal": 1200,
+          "protein": 55
+        }
+      ]
+    },
+    "2026-08-15": {
+      "weight": null,
+      "sleep": 5.5,
+      "energy": "Low",
+      "waist": null,
+      "workout": "C",
+      "training": "No",
+      "meals": [
+        {
+          "slot": "Breakfast",
+          "name": "3 boiled eggs + yoghurt(200ml) + Pap/ogi",
+          "kcal": 650,
+          "protein": 42
+        },
+        {
+          "slot": "Dinner",
+          "name": "White rice + Beans+ tomatoe stew + beef",
+          "kcal": 900,
+          "protein": 45
+        }
+      ]
+    }
+  },
+  "flex": {
+    "A": {
+      "preferred": "Monday",
+      "alternative": "Friday evening"
+    },
+    "B": {
+      "preferred": "Wednesday",
+      "alternative": "Sunday"
+    },
+    "C": {
+      "preferred": "Saturday",
+      "alternative": "Friday evening or Sunday"
+    }
+  }
+}
