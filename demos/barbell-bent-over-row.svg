@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+    <defs><linearGradient id="bg" x1="0" x2="1"><stop stop-color="#f8fbff"/><stop offset="1" stop-color="#edf5ff"/></linearGradient></defs>
+    <rect width="900" height="520" rx="36" fill="url(#bg)"/>
+    <text x="42" y="58" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="30" font-weight="700" fill="#10202f">Barbell bent-over row</text>
+    <text x="42" y="92" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="18" fill="#5e6b78">Start → finish • schematic form guide</text>
+    <rect x="38" y="120" width="385" height="280" rx="28" fill="#fff" stroke="#d9e4ee"/>
+    <rect x="477" y="120" width="385" height="280" rx="28" fill="#fff" stroke="#d9e4ee"/>
+    <text x="64" y="154" font-family="sans-serif" font-size="17" font-weight="700" fill="#20639b">START</text>
+    <text x="503" y="154" font-family="sans-serif" font-size="17" font-weight="700" fill="#2e8b57">FINISH</text>
+    <!-- start figure -->
+    <circle cx="230" cy="206" r="28" fill="#173f5f"/><line x1="230" y1="234" x2="230" y2="315" stroke="#173f5f" stroke-width="18" stroke-linecap="round"/>
+    <line x1="230" y1="258" x2="175" y2="290" stroke="#173f5f" stroke-width="16" stroke-linecap="round"/><line x1="230" y1="258" x2="285" y2="290" stroke="#173f5f" stroke-width="16" stroke-linecap="round"/>
+    <line x1="230" y1="315" x2="194" y2="374" stroke="#173f5f" stroke-width="17" stroke-linecap="round"/><line x1="230" y1="315" x2="266" y2="374" stroke="#173f5f" stroke-width="17" stroke-linecap="round"/>
+    <rect x="187" y="265" width="86" height="20" rx="10" fill="#48a86b"/>
+    <!-- finish figure -->
+    <circle cx="670" cy="206" r="28" fill="#173f5f"/><line x1="670" y1="234" x2="660" y2="313" stroke="#173f5f" stroke-width="18" stroke-linecap="round"/>
+    <line x1="665" y1="258" x2="610" y2="278" stroke="#173f5f" stroke-width="16" stroke-linecap="round"/><line x1="665" y1="258" x2="720" y2="278" stroke="#173f5f" stroke-width="16" stroke-linecap="round"/>
+    <line x1="660" y1="313" x2="620" y2="372" stroke="#173f5f" stroke-width="17" stroke-linecap="round"/><line x1="660" y1="313" x2="704" y2="360" stroke="#173f5f" stroke-width="17" stroke-linecap="round"/>
+    <rect x="627" y="251" width="86" height="20" rx="10" fill="#48a86b"/>
+    <text x="42" y="438" font-family="sans-serif" font-size="17" fill="#10202f"><tspan font-weight="700">Setup:</tspan> Hip hinge; bar below knees</text>
+    <text x="42" y="470" font-family="sans-serif" font-size="17" fill="#10202f"><tspan font-weight="700">Move:</tspan> Pull bar toward lower ribs</text>
+    <text x="42" y="502" font-family="sans-serif" font-size="17" fill="#10202f"><tspan font-weight="700">Cue:</tspan> Keep torso angle steady</text>
+    </svg>

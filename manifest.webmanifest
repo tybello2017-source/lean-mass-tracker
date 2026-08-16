@@ -1,13 +1,15 @@
 {
-  "name":"Lean Mass Tracker",
-  "short_name":"Lean Mass",
-  "start_url":"./",
+  "name":"Lean Mass Tracker V1.1",
+  "short_name":"LeanMassTracker",
+  "id":"./",
+  "start_url":"./?source=pwa",
+  "scope":"./",
   "display":"standalone",
-  "background_color":"#f5f7f9",
-  "theme_color":"#173f5f",
-  "description":"Personal 12-week nutrition, weight and home workout tracker.",
+  "background_color":"#f4f6fa",
+  "theme_color":"#f4f6fa",
+  "description":"Personal 12-week lean mass, nutrition and home workout tracker.",
   "icons":[
-    {"src":"icons/icon-192.png","sizes":"192x192","type":"image/png"},
-    {"src":"icons/icon-512.png","sizes":"512x512","type":"image/png"}
+    {"src":"icons/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
+    {"src":"icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
   ]
 }

@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#173f5f" />
+  <meta name="theme-color" content="#f5f7fb" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="Lean Mass" />
-  <title>Lean Mass Tracker</title>
+  <title>Lean Mass Tracker V1.1</title>
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="apple-touch-icon" href="icons/icon-180.png" />
   <link rel="stylesheet" href="styles.css" />
@@ -15,10 +15,10 @@
 <body>
   <header class="topbar">
     <div>
-      <div class="eyebrow">12-WEEK PROGRAMME</div>
+      <div class="eyebrow">12-WEEK PROGRAMME · V1.1</div>
       <h1>Lean Mass Tracker</h1>
     </div>
-    <button id="todayBtn" class="ghost">Today</button>
+    <div class="header-actions"><button id="bellBtn" class="round-btn" aria-label="Reminders">◔</button><button id="todayBtn" class="soft-btn">Today</button></div>
   </header>
 
   <main id="app">
@@ -32,26 +32,33 @@
   <nav class="bottom-nav" aria-label="Primary">
     <button data-view="today" class="active"><span>⌂</span><small>Today</small></button>
     <button data-view="meals"><span>＋</span><small>Meals</small></button>
-    <button data-view="workouts"><span>🏋️</span><small>Workout</small></button>
+    <button data-view="workouts"><span>🏋︎</span><small>Workout</small></button>
     <button data-view="progress"><span>↗</span><small>Progress</small></button>
-    <button data-view="settings"><span>⚙</span><small>Settings</small></button>
+    <button data-view="settings"><span>•••</span><small>More</small></button>
   </nav>
 
-  <dialog id="mealDialog">
+  <dialog id="mealDialog" class="sheet-dialog">
     <form method="dialog" id="mealForm">
-      <div class="dialog-head"><h3>Add meal</h3><button value="cancel" class="icon-btn">✕</button></div>
+      <div class="dialog-head"><button value="cancel" class="text-btn">Cancel</button><h3>Add meal</h3><button type="button" id="saveMeal" class="text-btn strong">Save</button></div>
+      <div class="segmented" id="mealMode"><button type="button" data-mode="recent" class="active">Recent</button><button type="button" data-mode="favorites">Favourites</button><button type="button" data-mode="all">All</button></div>
       <label>Meal slot<select id="mealSlot"><option>Breakfast</option><option>Snack 1</option><option>Lunch</option><option>Snack 2</option><option>Dinner</option><option>Other</option></select></label>
-      <label>Search<input id="mealSearch" type="search" placeholder="e.g. rice, yoghurt, Serious Mass" /></label>
+      <label>Search<input id="mealSearch" type="search" placeholder="Search rice, yoghurt, Serious Mass…" /></label>
       <label>Food<select id="mealSelect"></select></label>
+      <div class="row gap-sm"><button type="button" id="favMealBtn" class="secondary compact">☆ Favourite</button><button type="button" id="seriousMassBtn" class="secondary compact">Serious Mass</button></div>
+      <label>Portion<select id="mealPortion"><option value="0.5">½ portion</option><option value="0.75">¾ portion</option><option value="1" selected>1 portion</option><option value="1.25">1¼ portions</option><option value="1.5">1½ portions</option><option value="2">2 portions</option></select></label>
       <div class="two-col">
         <label>Calories<input id="mealKcal" type="number" min="0" step="1" /></label>
         <label>Protein (g)<input id="mealProtein" type="number" min="0" step="0.5" /></label>
       </div>
+      <label>Meal photo (optional)<div class="photo-picker"><input id="mealPhoto" type="file" accept="image/*" capture="environment" /><span>📷 Take or choose photo</span></div></label>
+      <div id="photoPreview" class="photo-preview hidden"></div>
       <label>Notes<input id="mealNotes" type="text" placeholder="optional" /></label>
-      <div class="dialog-actions"><button value="cancel" class="secondary">Cancel</button><button type="button" id="saveMeal" class="primary">Add</button></div>
     </form>
   </dialog>
 
+  <dialog id="demoDialog" class="sheet-dialog"><div id="demoBody"></div></dialog>
+  <dialog id="reminderDialog" class="sheet-dialog"><div id="reminderBody"></div></dialog>
+  <div id="toast" class="toast" role="status"></div>
   <script src="app.js"></script>
 </body>
 </html>
