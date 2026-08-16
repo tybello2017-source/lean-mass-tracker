@@ -1,4 +1,4 @@
-const CACHE='lean-mass-v1-1-3';
+const CACHE='lean-mass-v1-2-1';
 const CORE=['./','./index.html','./styles.css','./app.js','./seed-data.json','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png','./icons/icon-180.png','./demos/barbell-bench-press.svg','./demos/barbell-bent-over-row.svg','./demos/bulgarian-split-squat.svg','./demos/dumbbell-curl.svg','./demos/dumbbell-lateral-raise.svg','./demos/dumbbell-shoulder-press.svg','./demos/goblet-squat.svg','./demos/hip-thrust.svg','./demos/incline-dumbbell-press.svg','./demos/one-arm-dumbbell-row.svg','./demos/overhead-triceps-extension.svg','./demos/plank.svg','./demos/reverse-lunge.svg','./demos/romanian-deadlift.svg'];
 self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)))});
 self.addEventListener('activate',e=>{e.waitUntil(Promise.all([self.clients.claim(),caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))]))});

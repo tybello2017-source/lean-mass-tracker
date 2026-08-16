@@ -1,50 +1,20 @@
-LEAN MASS TRACKER — PWA V1.1
+LEAN MASS TRACKER — PWA V1.2
 
-WHAT'S NEW
-- Existing V1 data is preserved: V1.1 intentionally keeps the same localStorage key.
-- Apple-style refreshed interface and cleaner Today screen.
-- Proper Monday–Sunday weekly calendar with previous/next week controls.
-- Weekly averages for calories/protein and workout count.
-- Meal photos: take/select a photo when logging a meal. Photos are compressed and stored locally in IndexedDB.
-- Meal photo gallery in Progress.
-- Recent foods and Favourite foods.
-- Portion multipliers: 1/2, 3/4, 1, 1.25, 1.5, 2 portions.
-- Serious Mass quick-add (631 kcal / 25 g protein).
-- Workout demonstration cards for the home exercises, with form cues.
-- Body measurements: waist, chest, upper arm and thigh, with trend chart.
-- Weight trend and body measurement charts.
-- Reminders for breakfast, lunch, Serious Mass, dinner, workout and weekly weigh-in.
-- Improved backup/restore: V1.1 backup also includes meal photos.
-- Improved service-worker updating and offline caching.
+V1.2 focuses on four upgrades:
+1. More accurate start/finish workout illustrations for the home exercise programme.
+2. Better exercise logging: every prescribed set can record load, reps, RIR (reps in reserve) and completion, with copy-previous and progression prompts.
+3. Genuine weekly statistics and calendar status: averages use only days with meals actually logged; calendar dots distinguish meals, workouts and check-ins.
+4. Better meal-photo integration: photos appear as tappable meal thumbnails and in a dated gallery with full-screen details.
 
-IMPORTANT REMINDER LIMITATION
-This app is hosted on GitHub Pages and has no notification server. V1.1 can show notifications while the app is active/recently opened and checks overdue reminders when it opens. Reliable scheduled push notifications while the app is fully closed would require a later server-backed push service (for example a small push backend/Cloudflare Worker).
+Existing V1/V1.1 local data is preserved because the app continues to use the same local storage identity. Workout logs from older versions are migrated into the new per-set structure when possible.
 
-HOW TO UPDATE YOUR EXISTING GITHUB REPOSITORY
-1. Keep the existing repository: lean-mass-tracker. Do NOT create a new repository.
-2. Open the repository > Code.
-3. Upload the contents of this V1.1 folder to the repository root.
-4. Replace the existing files when GitHub prompts/conflicts:
-   - index.html
-   - app.js
-   - styles.css
-   - sw.js
-   - manifest.webmanifest
-   - seed-data.json
-   - README.txt
-   - icons folder
-5. Also upload the new demos folder.
-6. Commit with a message such as: Upgrade Lean Mass Tracker to V1.1
-7. GitHub Pages will redeploy automatically from main / root.
+UPDATE ON GITHUB PAGES
+- Upload the contents of this folder to the existing lean-mass-tracker repository root.
+- Replace index.html, app.js, styles.css, sw.js, manifest.webmanifest, README.txt and demos/.
+- Commit, then wait for the Pages deployment to show a green check.
+- Open the installed PWA online once; close/reopen if the service worker still shows the old version.
 
-IPHONE AFTER DEPLOYMENT
-- Keep your existing Home Screen app installed; this preserves the same local app origin/data.
-- Open LeanMassTracker and give it a few seconds online.
-- If it still shows the old version, fully close it and reopen it. The V1.1 service worker uses a new cache and checks for updates.
-- You should see “V1.1” in the top eyebrow/header.
-- If prompted that a new version is ready, tap Refresh now.
-- Do NOT delete the Home Screen app or clear Safari website data before exporting a backup.
-
-BACKUP
-More > Backup & restore > Export backup.
-The exported JSON contains app state and, in V1.1, compressed meal photos.
+DATA
+- Logs remain local to the browser/PWA.
+- Meal photos are stored in IndexedDB.
+- Use More > Export backup periodically.
