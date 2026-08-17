@@ -164,3 +164,16 @@ body{
  .source-choice{min-height:105px;flex-direction:row;text-align:left;justify-content:flex-start;padding:16px 18px}
  .source-choice small{max-width:none}
 }
+
+/* V1.5 thumbnail corrections */
+.food-img,.meal-thumb{object-fit:cover;object-position:center;display:block}
+.food-media{overflow:hidden}
+.food-media>.food-img{width:100%;height:100%}
+.food-placeholder{display:grid!important;place-items:center!important;padding:0!important;position:relative;overflow:hidden!important}
+.food-placeholder-title,.food-placeholder small{display:none!important}
+.food-placeholder .food-emoji{font-size:46px!important;line-height:1!important;transform:none!important;white-space:normal!important}
+.placeholder-spark{position:absolute;right:12px;bottom:9px;font-size:17px;color:rgba(255,255,255,.9)}
+.food-photo-action{display:none!important}
+.meal-row .meal-thumb.food-placeholder{min-width:58px;width:58px;height:58px;border-radius:16px}
+.meal-row .meal-thumb.food-placeholder .food-emoji{font-size:29px!important}
+.food-card .photo-link{font-size:11px;line-height:1.25;margin-top:6px}

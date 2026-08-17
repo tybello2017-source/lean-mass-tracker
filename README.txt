@@ -30,3 +30,13 @@ V1.4 — Colour + iPhone Photo Library update
 - Added more exact built-in food images only where the asset reliably matches the meal.
 - Refreshed cards, quick meal actions, navigation, KPI panels, workout areas and accents with a more colourful Apple-style visual system.
 - Preserves V1.3 local data/storage identity and user photo overrides.
+
+
+V1.5: integrated 89 supplied meal photos, resized/cropped to 720x480 WebP; fixed fallback thumbnail text cropping; removed floating camera overlay; retained camera/gallery replacement.
+
+
+GITHUB-FRIENDLY V1.5 PACKAGE
+- The 89 meal thumbnail images are bundled inside assets/meal-photo-map-v15.json.
+- This removes the need to upload 89 separate meal-photo files.
+- Upload everything inside this folder to the repository in one browser upload.
+- No change to the visible meal images or V1.5 app behaviour.
