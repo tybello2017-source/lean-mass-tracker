@@ -1,7 +1,7 @@
 const STORE='leanMassTrackerV1';
-const VERSION='1.3';
+const VERSION='1.4';
 const PHOTO_DB='LeanMassPhotos';
-let seed,state,selectedDate=isoToday(),mealMode='recent',currentPhotoBlob=null,calendarAnchor=isoToday();
+let seed,state,selectedDate=isoToday(),mealMode='recent',currentPhotoBlob=null,calendarAnchor=isoToday(),photoTarget=null;
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const demoMap={
  'Goblet squat':['goblet-squat.svg','Hold a dumbbell at chest; sit hips down/back; keep heels down.'],
@@ -42,7 +42,9 @@ function mealImage(name=''){
  const exact={
    '3 boiled eggs + 200 ml whole milk':'assets/meals/boiled-eggs.jpg',
    '3 boiled eggs':'assets/meals/boiled-eggs.jpg',
-   'whole milk':'assets/meals/whole-milk.jpg'
+   'whole milk':'assets/meals/whole-milk.jpg',
+   'oats 60 g + 250 ml whole milk + banana':'assets/meals/oats-banana.jpg',
+   '3 boiled eggs + yoghurt(200ml) + pap/ogi':'assets/meals/pap-yoghurt-eggs.jpg'
  };
  return exact[n]||null;
 }
@@ -52,12 +54,28 @@ function mealEmoji(name=''){
  if(/chicken/.test(n))return'🍗'; if(/rice/.test(n))return'🍚'; if(/yam|potato|plantain/.test(n))return'🍠'; if(/beans|moi moi|akara/.test(n))return'🫘';
  if(/oat|pap|ogi/.test(n))return'🥣'; if(/pasta|spaghetti/.test(n))return'🍝'; return'🍽️';
 }
+function mealCategory(name=''){
+ const n=name.toLowerCase();
+ if(/serious mass|shake/.test(n))return'shake';
+ if(/fish|tilapia|catfish|salmon/.test(n))return'fish';
+ if(/chicken|beef|goat|cowtail|meat|suya/.test(n))return'protein';
+ if(/rice|jollof|basmati/.test(n))return'rice';
+ if(/yam|potato|plantain|fries/.test(n))return'starch';
+ if(/beans|moi moi|akara/.test(n))return'beans';
+ if(/swallow|pounded|semo|corn|millet/.test(n))return'swallow';
+ if(/oat|pap|ogi|bread|egg|milk|yoghurt|yogurt/.test(n))return'breakfast';
+ if(/soup|stew|okro|egusi|bitterleaf|vegetable/.test(n))return'soup';
+ if(/chips|snack|banana|peanut/.test(n))return'snack';
+ return'mixed';
+}
 function mealVisual(m, cls='meal-thumb'){
  const override=state?.mealPhotoOverrides?.[m?.name||''];
  const pid=m?.photoId||override;
  if(pid) return `<img class="${cls} photo-ref" data-photo="${esc(pid)}" alt="${esc(m.name)}">`;
  const src=mealImage(m?.name||'');
- return src?`<img class="${cls}" src="${src}" alt="${esc(m?.name||'Meal')}">`:`<div class="${cls} food-placeholder"><span>${mealEmoji(m?.name||'')}</span><small>Add your photo</small></div>`;
+ if(src)return `<img class="${cls}" src="${src}" alt="${esc(m?.name||'Meal')}">`;
+ const cat=mealCategory(m?.name||'');
+ return `<div class="${cls} food-placeholder cat-${cat}"><span class="food-emoji">${mealEmoji(m?.name||'')}</span><span class="food-placeholder-title">${esc((m?.name||'Meal').split('+')[0].trim())}</span><small>Tap photo to personalise</small></div>`;
 }
 const verifiedExercisePhotos={
  'Barbell bench press':'barbell-bench-press.jpg',
@@ -97,7 +115,7 @@ function migrate(){
 }
 function defaultReminders(){return{breakfast:{label:'Breakfast',enabled:false,time:'08:00'},lunch:{label:'Lunch',enabled:false,time:'13:00'},mass:{label:'Serious Mass',enabled:false,time:'16:00'},dinner:{label:'Dinner',enabled:false,time:'20:00'},workout:{label:'Workout',enabled:false,time:'18:30'},weigh:{label:'Weekly weigh-in',enabled:false,time:'08:00'}}}
 async function boot(){
- seed=await fetch('seed-data.json',{cache:'no-store'}).then(r=>r.json());const stored=localStorage.getItem(STORE);
+ seed=await fetch('seed-data.json',{cache:'no-store'}).then(r=>r.json());setupPhotoChooser();const stored=localStorage.getItem(STORE);
  if(stored){state=JSON.parse(stored);migrate()}else{state={version:VERSION,startDate:'2026-08-14',settings:{...seed.setup},meals:seed.meals,workouts:seed.workouts,logs:{},customMeals:[],favorites:[],recentMeals:[],reminders:defaultReminders(),reminderFired:{}};for(const[date,x]of Object.entries(seed.historical))state.logs[date]={...blankLog(),...x,workoutLog:{}};save()}
  setupNav();setupMealDialog();setupReminders();renderAll();checkReminders();setInterval(checkReminders,60000);
  if('serviceWorker'in navigator){navigator.serviceWorker.register('./sw.js').then(reg=>{reg.update();if(reg.waiting)showUpdateBanner(reg)}).catch(()=>{});navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!sessionStorage.getItem('reloaded12')){sessionStorage.setItem('reloaded12','1');location.reload()}})}
@@ -133,7 +151,7 @@ function renderToday(){
  const mealHtml=log.meals.length?log.meals.map((m,i)=>`<div class="meal-row row between"><div class="meal-main">${m.photoId?`<button class="photo-button" onclick="openMealPhoto('${selectedDate}',${i})">${mealVisual(m,'meal-thumb')}</button>`:mealVisual(m,'meal-thumb')}<div><span class="pill">${esc(m.slot)}</span><strong>${esc(m.name)}</strong><span class="muted">${Math.round(m.kcal)} kcal · ${(+m.protein).toFixed((+m.protein)%1?1:0)} g protein ${m.photoId?'· 📷':''}</span>${m.notes?`<div class="tiny muted">${esc(m.notes)}</div>`:''}</div></div><button class="ghost tiny" onclick="deleteMeal('${selectedDate}',${i})">Delete</button></div>`).join(''):`<div class="empty">No meals logged yet.</div>`;
  $('#view-today').innerHTML=`${renderWeekCalendar()}<div class="card hero"><div class="row between"><div><div class="eyebrow">WEEK ${t.week} · ${fmtDate(selectedDate)}</div><h2>${status}</h2><div class="muted">Goal: ${state.settings.startWeight} → ${state.settings.goalWeight} kg</div></div><div class="right"><div class="big">${weight==null?'—':weight.toFixed(1)} kg</div><div class="muted">${weight==null?'No weigh-in yet':`${gain>=0?'+':''}${gain.toFixed(1)} kg from start`}</div></div></div></div>
  <div class="kpis"><div class="kpi"><span class="muted">Calories</span><div class="big">${Math.round(sum.kcal)}</div><div class="muted">of ${t.kcal} kcal</div><div class="progress"><i style="width:${pct(sum.kcal,t.kcal)}%"></i></div></div><div class="kpi"><span class="muted">Protein</span><div class="big">${Math.round(sum.protein)}g</div><div class="muted">of ${t.protein} g</div><div class="progress"><i style="width:${pct(sum.protein,t.protein)}%"></i></div></div></div>
- <div class="card"><div class="section-title"><div><span class="muted">Selected day</span><h2>${fmtDate(selectedDate)}</h2></div><input id="datePick" type="date" value="${selectedDate}" style="width:auto;margin:0"></div><div class="quick-grid"><button class="quick" onclick="openMeal('Breakfast')"><strong>☀︎ Breakfast</strong><span class="muted">Log meal</span></button><button class="quick" onclick="openMeal('Snack 1')"><strong>◉ Snack</strong><span class="muted">Log snack</span></button><button class="quick" onclick="openMeal('Lunch')"><strong>♨ Lunch</strong><span class="muted">Log meal</span></button><button class="quick" onclick="openMeal('Dinner')"><strong>◒ Dinner</strong><span class="muted">Log meal</span></button><button class="quick" onclick="quickMass()"><strong>＋ Serious Mass</strong><span class="muted">631 kcal · 25g</span></button></div></div>
+ <div class="card"><div class="section-title"><div><span class="muted">Selected day</span><h2>${fmtDate(selectedDate)}</h2></div><input id="datePick" type="date" value="${selectedDate}" style="width:auto;margin:0"></div><div class="quick-grid"><button class="quick quick-breakfast" onclick="openMeal('Breakfast')"><strong>☀︎ Breakfast</strong><span class="muted">Log meal</span></button><button class="quick quick-snack" onclick="openMeal('Snack 1')"><strong>◉ Snack</strong><span class="muted">Log snack</span></button><button class="quick quick-lunch" onclick="openMeal('Lunch')"><strong>♨ Lunch</strong><span class="muted">Log meal</span></button><button class="quick quick-dinner" onclick="openMeal('Dinner')"><strong>◒ Dinner</strong><span class="muted">Log meal</span></button><button class="quick quick-mass" onclick="quickMass()"><strong>＋ Serious Mass</strong><span class="muted">631 kcal · 25g</span></button></div></div>
  <div class="card"><div class="row between"><h3>Meals</h3><button class="ghost" onclick="openMeal('Other')">+ Add</button></div>${mealHtml}<div class="metricline"><span>Total</span><b>${Math.round(sum.kcal)} kcal · ${Math.round(sum.protein)} g</b></div></div>
  <div class="card"><h3>Daily check-in</h3><div class="two-col"><label>Weight (kg)<input id="todayWeight" type="number" step="0.1" value="${log.weight??''}"></label><label>Sleep (hours)<input id="todaySleep" type="number" step="0.1" value="${log.sleep??''}"></label><label>Waist (cm)<input id="todayWaist" type="number" step="0.1" value="${log.waist??''}"></label><label>Chest (cm)<input id="todayChest" type="number" step="0.1" value="${log.chest??''}"></label><label>Upper arm (cm)<input id="todayArm" type="number" step="0.1" value="${log.arm??''}"></label><label>Thigh (cm)<input id="todayThigh" type="number" step="0.1" value="${log.thigh??''}"></label><label>Energy<select id="todayEnergy"><option></option>${['Low','Moderate','Good','High'].map(x=>`<option ${log.energy===x?'selected':''}>${x}</option>`).join('')}</select></label></div><button class="primary" onclick="saveCheckin()">Save check-in</button></div>
  <div class="card"><span class="muted">Workout</span><h3>${workoutSuggestion(selectedDate)}</h3><p class="muted">Target remains 3 resistance sessions/week. Friday evening and Sunday are make-up alternatives, not extra compulsory lifting days.</p><button class="primary" onclick="showView('workouts')">Open workout</button></div>`;
@@ -161,28 +179,51 @@ async function saveMealEntry(){
 async function deleteMeal(date,i){const l=logFor(date),m=l.meals[i];const shared=!!state.customMeals?.some(c=>c.photoId&&c.photoId===m?.photoId)||Object.values(state.mealPhotoOverrides||{}).includes(m?.photoId);if(m?.photoId&&!shared)await deletePhoto(m.photoId);l.meals.splice(i,1);save();renderAll()}
 
 function renderMeals(){
- $('#view-meals').innerHTML=`<div class="section-title"><div><span class="muted">Photo-rich food library · V1.3</span><h2>Meals</h2></div><span class="pill blue">${allMeals().length} foods</span></div>
+ $('#view-meals').innerHTML=`<div class="section-title"><div><span class="muted">Colour photo library · V1.4</span><h2>Meals</h2></div><span class="pill blue">${allMeals().length} foods</span></div>
  <div class="card"><div class="segmented"><button class="active" onclick="mealLibraryMode('all',this)">All</button><button onclick="mealLibraryMode('favorites',this)">Favourites</button><button onclick="mealLibraryMode('recent',this)">Recent</button></div>
  <label>Search<input id="dbSearch" type="search" placeholder="Rice, yam, yoghurt, Serious Mass…"></label><div id="dbList" class="food-grid"></div></div>
  <div class="card custom-meal-card"><div class="row between"><div><span class="muted">Your meals only</span><h3>Create custom meal</h3></div><span class="pill">📷 photo</span></div>
  <p class="muted">You can now add or replace the photo for any meal. Where an exact built-in photo is not available, V1.3 leaves a clean photo placeholder instead of showing a misleading image.</p>
- <label>Meal photo<div class="photo-picker custom-photo"><input id="customPhoto" type="file" accept="image/*" capture="environment"><span>📷 Take or choose your photo</span></div></label>
+ <label>Meal photo<div class="photo-picker custom-photo photo-launch" onclick="openPhotoChooser('__custom__')"><span class="photo-picker-icon">📷</span><span><b>Add meal photo</b><small>Camera or Photo Library</small></span></div></label>
  <div id="customPhotoPreview" class="photo-preview hidden"></div>
  <div class="two-col"><label>Name<input id="customName"></label><label>Calories<input id="customKcal" type="number"></label><label>Protein (g)<input id="customProtein" type="number" step="0.5"></label><label>Notes<input id="customNotes"></label></div><button class="primary" onclick="addCustomMeal()">Save custom meal</button></div>`;
  state.libraryMode=state.libraryMode||'all';
  const renderList=()=>{const q=$('#dbSearch').value.toLowerCase();let items=allMeals().filter(m=>m.name.toLowerCase().includes(q));if(state.libraryMode==='favorites')items=items.filter(m=>state.favorites.includes(m.name));if(state.libraryMode==='recent'){const mp=new Map(items.map(m=>[m.name,m]));items=state.recentMeals.map(n=>mp.get(n)).filter(Boolean)}
- $('#dbList').innerHTML=items.slice(0,89).map(m=>`<article class="food-card"><div class="food-media">${mealVisual(m,'food-img')}<button class="food-star ${state.favorites.includes(m.name)?'favourite':''}" onclick="toggleFavoriteName('${encodeURIComponent(m.name)}')">${state.favorites.includes(m.name)?'★':'☆'}</button><label class="food-camera" title="Add or replace meal photo">📷<input type="file" accept="image/*" capture="environment" onchange="replaceMealPhoto('${encodeURIComponent(m.name)}',this)"></label></div><div class="food-info"><strong>${esc(m.name)}</strong><span>${Math.round(m.kcal)} kcal · ${m.protein} g protein</span><button class="photo-link" onclick="document.querySelector('.food-camera input[onchange*=\'${encodeURIComponent(m.name)}\']')?.click()">Add / replace photo</button></div></article>`).join('')||'<div class="empty">No match</div>';hydratePhotos()};
+ $('#dbList').innerHTML=items.slice(0,89).map(m=>`<article class="food-card cat-card-${mealCategory(m.name)}"><div class="food-media">${mealVisual(m,'food-img')}<span class="category-badge">${mealCategory(m.name)}</span><button class="food-star ${state.favorites.includes(m.name)?'favourite':''}" onclick="toggleFavoriteName('${encodeURIComponent(m.name)}')">${state.favorites.includes(m.name)?'★':'☆'}</button><button class="food-photo-action" onclick="openPhotoChooser('${encodeURIComponent(m.name)}')" aria-label="Add or replace photo">📷</button></div><div class="food-info"><strong>${esc(m.name)}</strong><span>${Math.round(m.kcal)} kcal · ${m.protein} g protein</span><button class="photo-link" onclick="openPhotoChooser('${encodeURIComponent(m.name)}')">${state.mealPhotoOverrides?.[m.name]?'Replace photo':'Add photo from camera or gallery'}</button></div></article>`).join('')||'<div class="empty">No match</div>';hydratePhotos()};
  state.renderDbList=renderList;$('#dbSearch').oninput=renderList;renderList();
- $('#customPhoto').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;currentPhotoBlob=await compressImage(f);const u=URL.createObjectURL(currentPhotoBlob),p=$('#customPhotoPreview');p.style.backgroundImage=`url(${u})`;p.classList.remove('hidden')};
 }
 function mealLibraryMode(m,b){state.libraryMode=m;save();b.parentElement.querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));state.renderDbList?.()}
 function toggleFavoriteName(encoded){const n=decodeURIComponent(encoded),i=state.favorites.indexOf(n);if(i>=0)state.favorites.splice(i,1);else state.favorites.unshift(n);save();renderMeals()}
-async function replaceMealPhoto(encoded,input){
- const name=decodeURIComponent(encoded),f=input?.files?.[0];if(!f)return;
- const blob=await compressImage(f),old=state.mealPhotoOverrides?.[name],id=crypto.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random();
+function setupPhotoChooser(){
+ const cam=$('#photoCameraInput'),gal=$('#photoGalleryInput');
+ if(cam)cam.onchange=e=>handleChosenPhoto(e.target);
+ if(gal)gal.onchange=e=>handleChosenPhoto(e.target);
+}
+function openPhotoChooser(encoded){
+ photoTarget=encoded==='__custom__'?{type:'custom'}:{type:'meal',name:decodeURIComponent(encoded)};
+ const cam=$('#photoCameraInput'),gal=$('#photoGalleryInput');
+ if(cam)cam.value='';if(gal)gal.value='';
+ $('#photoSourceDialog')?.showModal();
+}
+function closePhotoChooser(){photoTarget=null;$('#photoSourceDialog')?.close()}
+async function handleChosenPhoto(input){
+ const f=input?.files?.[0];if(!f||!photoTarget)return;
+ const target={...photoTarget};$('#photoSourceDialog')?.close();photoTarget=null;
+ const blob=await compressImage(f);
+ if(target.type==='custom'){
+   currentPhotoBlob=blob;
+   const u=URL.createObjectURL(blob),p=$('#customPhotoPreview');
+   if(p){p.style.backgroundImage=`url(${u})`;p.classList.remove('hidden')}
+   toast('Photo selected');
+   return;
+ }
+ await saveMealPhoto(target.name,blob);
+}
+async function saveMealPhoto(name,blob){
+ const old=state.mealPhotoOverrides?.[name],id=crypto.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random();
  await putPhoto(id,blob);state.mealPhotoOverrides=state.mealPhotoOverrides||{};state.mealPhotoOverrides[name]=id;
- if(old && !Object.values(state.mealPhotoOverrides).includes(old))await deletePhoto(old);
- save();renderMeals();toast('Meal photo updated');
+ if(old && old!==id && !Object.values(state.mealPhotoOverrides).filter(x=>x===old).length)await deletePhoto(old);
+ save();renderAll();toast('Meal photo updated');
 }
 async function addCustomMeal(){
  const name=$('#customName').value.trim();if(!name)return;
@@ -204,10 +245,10 @@ function progressionHint(k,x,i,date){
 }
 function renderWorkouts(){
  const buttons=['A','B','C'].map(k=>`<button class="chip ${(state.uiWorkout||'A')===k?'active':''}" onclick="state.uiWorkout='${k}';renderWorkouts()">Workout ${k}</button>`).join(''),k=state.uiWorkout||'A',flex=seed.flex[k],ex=state.workouts[k],log=logFor(selectedDate);
- $('#view-workouts').innerHTML=`<div class="section-title"><div><span class="muted">Home programme · V1.3</span><h2>Workout ${k}</h2></div><span class="pill">${log.training==='Yes'&&log.workout===k?'Completed':'3 / week'}</span></div>
+ $('#view-workouts').innerHTML=`<div class="section-title"><div><span class="muted">Home programme · V1.4</span><h2>Workout ${k}</h2></div><span class="pill">${log.training==='Yes'&&log.workout===k?'Completed':'3 / week'}</span></div>
  <div class="notice success"><b>Flexible:</b> preferred ${flex.preferred}; alternative ${flex.alternative}. Friday/Sunday are make-up slots, not extra compulsory sessions.</div><div class="tabbar">${buttons}</div>
  <div class="card"><div class="row between"><div><span class="muted">${fmtDate(selectedDate)}</span><h3>Workout ${k}</h3></div><button class="ghost" onclick="selectedDate=isoToday();renderAll()">Today</button></div>${ex.map((x,i)=>exerciseHtml(k,x,i,log)).join('')}<button class="primary full" onclick="completeWorkout('${k}')">Mark Workout ${k} complete</button></div>
- <div class="notice">V1.3 shows a real exercise photo only where the movement has been verified; otherwise it uses the correct exercise-specific form guide rather than a mismatched photo. Use them as visual references; stop for sharp pain, dizziness, or unusual symptoms.</div>`;
+ <div class="notice">V1.4 shows a real exercise photo only where the movement has been verified; otherwise it uses the correct exercise-specific form guide rather than a mismatched photo. Use them as visual references; stop for sharp pain, dizziness, or unusual symptoms.</div>`;
 }
 function exerciseHtml(k,x,i,log){
  const key=`${k}-${i}`,v=log.workoutLog?.[key]||{},sets=Array.from({length:+x.sets||3},(_,si)=>v.sets?.[si]||{}),hint=progressionHint(k,x,i,selectedDate);

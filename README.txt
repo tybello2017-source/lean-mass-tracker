@@ -19,3 +19,14 @@ V1.3 corrected photo build
 - User meal-photo replacements are stored locally in IndexedDB and included in backup.
 - Workout photography is shown only for verified matching exercises.
 - Unverified workout photos are replaced by the correct exercise-specific form guide, preventing misleading exercise imagery.
+
+
+V1.4 — Colour + iPhone Photo Library update
+- Fixed iPhone photo selection: meal photos now use a source sheet with TWO explicit choices:
+  1) Take Photo (camera)
+  2) Choose from Photos (gallery; no capture attribute)
+- The same chooser works for preloaded meal photo replacements and new custom meals.
+- Added category-specific colourful thumbnail placeholders instead of plain/text-only cards.
+- Added more exact built-in food images only where the asset reliably matches the meal.
+- Refreshed cards, quick meal actions, navigation, KPI panels, workout areas and accents with a more colourful Apple-style visual system.
+- Preserves V1.3 local data/storage identity and user photo overrides.

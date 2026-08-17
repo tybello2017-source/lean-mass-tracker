@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="Lean Mass" />
-  <title>Lean Mass Tracker V1.3</title>
+  <title>Lean Mass Tracker V1.4</title>
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="apple-touch-icon" href="icons/icon-180.png" />
   <link rel="stylesheet" href="styles.css" />
@@ -15,7 +15,7 @@
 <body>
   <header class="topbar">
     <div>
-      <div class="eyebrow">12-WEEK PROGRAMME · V1.3</div>
+      <div class="eyebrow">12-WEEK PROGRAMME · V1.4</div>
       <h1>Lean Mass Tracker</h1>
     </div>
     <div class="header-actions"><button id="bellBtn" class="round-btn" aria-label="Reminders">◔</button><button id="todayBtn" class="soft-btn">Today</button></div>
@@ -56,6 +56,22 @@
 
   <dialog id="demoDialog" class="sheet-dialog"><div id="demoBody"></div></dialog>
   <dialog id="photoViewer" class="sheet-dialog"><div id="photoViewerBody"></div></dialog>
+  <dialog id="photoSourceDialog" class="sheet-dialog photo-source-dialog">
+    <div class="photo-source-sheet">
+      <div class="dialog-head"><button type="button" class="text-btn" onclick="closePhotoChooser()">Cancel</button><h3>Add photo</h3><span></span></div>
+      <p class="muted photo-source-copy">Choose where the meal photo should come from.</p>
+      <div class="photo-source-actions">
+        <label class="source-choice camera-choice">
+          <span class="source-icon">📷</span><strong>Take Photo</strong><small>Open the iPhone camera</small>
+          <input id="photoCameraInput" type="file" accept="image/*" capture="environment">
+        </label>
+        <label class="source-choice gallery-choice">
+          <span class="source-icon">🖼️</span><strong>Choose from Photos</strong><small>Select an existing image from your gallery</small>
+          <input id="photoGalleryInput" type="file" accept="image/*">
+        </label>
+      </div>
+    </div>
+  </dialog>
   <dialog id="reminderDialog" class="sheet-dialog"><div id="reminderBody"></div></dialog>
   <div id="toast" class="toast" role="status"></div>
   <script src="app.js"></script>

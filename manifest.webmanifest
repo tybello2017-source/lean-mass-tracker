@@ -1,12 +1,12 @@
 {
-  "name": "Lean Mass Tracker V1.3",
-  "short_name": "LeanMassTracker",
+  "name": "Lean Mass Tracker V1.4",
+  "short_name": "LeanMass",
   "id": "./",
   "start_url": "./?source=pwa",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f4f6fa",
-  "theme_color": "#f4f6fa",
+  "background_color": "#f4f7fb",
+  "theme_color": "#f7fbff",
   "description": "Personal 12-week lean mass, nutrition and home workout tracker.",
   "icons": [
     {

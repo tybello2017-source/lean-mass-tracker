@@ -64,3 +64,103 @@ body{background:linear-gradient(180deg,#f8fbff 0,#f2f6fa 34%,#eef3f8 100%);}
 .exercise-safe-placeholder img{width:100%;height:100%;object-fit:contain;padding:10px;opacity:.95}
 .exercise-safe-placeholder>span{position:absolute;left:14px;bottom:28px;background:rgba(8,54,83,.88);color:white;padding:5px 9px;border-radius:10px;font-weight:800;font-size:13px}
 .exercise-safe-placeholder>small{position:absolute;left:14px;bottom:9px;color:#174e73;font-size:10px;font-weight:700}
+
+/* ===================== V1.4 — Colour & Photo Sources ===================== */
+:root{
+ --violet:#7458e8; --pink:#ef6a9b; --sun:#f4ad38; --teal:#29a9a1;
+ --sky:#46a5ef; --lime:#7bbd48; --coral:#ef765e;
+}
+body{
+ background:
+ radial-gradient(circle at 12% 3%,rgba(68,166,239,.13),transparent 25%),
+ radial-gradient(circle at 92% 10%,rgba(116,88,232,.10),transparent 26%),
+ linear-gradient(180deg,#fbfdff 0,#f3f7fb 48%,#eef4f8 100%);
+}
+.topbar{
+ background:linear-gradient(120deg,rgba(251,253,255,.96),rgba(244,249,255,.94),rgba(250,247,255,.94));
+ box-shadow:0 8px 28px rgba(43,74,106,.06);
+}
+.eyebrow{background:linear-gradient(90deg,#076ab0,#6d5adb);-webkit-background-clip:text;background-clip:text;color:transparent}
+.soft-btn{background:linear-gradient(135deg,#fff,#eef6ff);box-shadow:0 6px 18px rgba(49,82,118,.08)}
+.round-btn{background:linear-gradient(135deg,#eaf6ff,#f3edff);box-shadow:0 6px 18px rgba(49,82,118,.08)}
+.hero{background:linear-gradient(135deg,#073c76 0%,#0c68b0 55%,#2d87c7 100%)}
+.kpis .kpi:nth-child(1){background:linear-gradient(145deg,#fff,#edf7ff)}
+.kpis .kpi:nth-child(2){background:linear-gradient(145deg,#fff,#edfbf4)}
+.progress i{background:linear-gradient(90deg,#2db36f,#65c98e)}
+.bottom-nav button.active span{display:inline-grid;place-items:center;min-width:34px;height:28px;border-radius:14px;background:#eaf4ff;color:#075ca5}
+.bottom-nav button[data-view="meals"].active span{background:#e7f8f1;color:#158357}
+.bottom-nav button[data-view="workouts"].active span{background:#fff1df;color:#b46b10}
+.bottom-nav button[data-view="progress"].active span{background:#f0ebff;color:#6848ce}
+.bottom-nav button[data-view="settings"].active span{background:#eef1f4;color:#3e5060}
+
+/* Colorful quick actions */
+.quick{transition:.18s;box-shadow:0 6px 16px rgba(29,61,91,.05)}
+.quick:active{transform:scale(.985)}
+.quick-breakfast{background:linear-gradient(135deg,#fff9df,#fff);border-color:#f4dea2}
+.quick-snack{background:linear-gradient(135deg,#fff0f5,#fff);border-color:#f0cada}
+.quick-lunch{background:linear-gradient(135deg,#eaf9f3,#fff);border-color:#bfe4d2}
+.quick-dinner{background:linear-gradient(135deg,#eef3ff,#fff);border-color:#cbd9f2}
+.quick-mass{background:linear-gradient(135deg,#f2ebff,#fff);border-color:#d8c9f3}
+
+/* Meal card palette */
+.food-card{transition:transform .16s ease,box-shadow .16s ease;border-width:1px}
+.food-card:active{transform:scale(.985)}
+.food-media{background:#eef3f8}
+.food-placeholder{position:relative;isolation:isolate;overflow:hidden!important;padding:12px}
+.food-placeholder:before,.food-placeholder:after{content:"";position:absolute;border-radius:50%;filter:blur(.2px);z-index:-1}
+.food-placeholder:before{width:110px;height:110px;right:-30px;top:-42px;background:rgba(255,255,255,.32)}
+.food-placeholder:after{width:72px;height:72px;left:-20px;bottom:-27px;background:rgba(255,255,255,.24)}
+.food-emoji{font-size:40px!important;filter:drop-shadow(0 5px 8px rgba(34,47,65,.14))}
+.food-placeholder-title{display:block;max-width:92%;font-size:12px;font-weight:850;text-align:center;line-height:1.1;color:rgba(15,44,65,.82)}
+.food-placeholder small{color:rgba(15,44,65,.63);font-size:9px!important}
+.food-placeholder.cat-breakfast{background:linear-gradient(145deg,#fff0ad,#ffd9a6)!important}
+.food-placeholder.cat-rice{background:linear-gradient(145deg,#c9edff,#d8e2ff)!important}
+.food-placeholder.cat-protein{background:linear-gradient(145deg,#ffd2c7,#ffecbd)!important}
+.food-placeholder.cat-fish{background:linear-gradient(145deg,#bdeaf0,#cde5ff)!important}
+.food-placeholder.cat-starch{background:linear-gradient(145deg,#ffe0a4,#f8c889)!important}
+.food-placeholder.cat-beans{background:linear-gradient(145deg,#ead0b9,#ffdcca)!important}
+.food-placeholder.cat-swallow{background:linear-gradient(145deg,#ddd9ff,#d4ecff)!important}
+.food-placeholder.cat-soup{background:linear-gradient(145deg,#ccecc7,#e5f4b8)!important}
+.food-placeholder.cat-snack{background:linear-gradient(145deg,#ffd7eb,#ffe6bd)!important}
+.food-placeholder.cat-shake{background:linear-gradient(145deg,#d8c9ff,#bfe9ff)!important}
+.food-placeholder.cat-mixed{background:linear-gradient(145deg,#d7ecff,#e8fff0,#fff2d8)!important}
+
+.category-badge{position:absolute;left:9px;top:9px;z-index:3;text-transform:capitalize;font-size:9px;font-weight:850;padding:5px 8px;border-radius:99px;background:rgba(255,255,255,.88);color:#385267;backdrop-filter:blur(8px);box-shadow:0 3px 12px rgba(15,45,70,.10)}
+.food-photo-action{position:absolute;left:9px;bottom:9px;z-index:4;width:38px;height:38px;border:0;border-radius:50%;background:linear-gradient(135deg,#fff,#eaf5ff);font-size:17px;box-shadow:0 5px 15px rgba(22,50,76,.15)}
+.food-star{right:9px;top:9px}
+.photo-link{color:#0967b5;display:inline-flex;align-items:center;gap:4px}
+.cat-card-breakfast{border-color:#f1dfb9}.cat-card-protein{border-color:#f0d0c4}.cat-card-fish{border-color:#c7e4e9}.cat-card-rice{border-color:#d0ddf0}.cat-card-shake{border-color:#d9cdf2}
+
+/* Photo chooser: camera AND gallery */
+.photo-source-dialog{background:#fff}
+.photo-source-sheet{padding:15px 17px calc(24px + env(safe-area-inset-bottom))}
+.photo-source-copy{text-align:center;margin:5px 0 14px}
+.photo-source-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.source-choice{position:relative;margin:0;padding:20px 12px;border-radius:22px;text-align:center;border:1px solid var(--line);min-height:145px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;color:var(--ink)}
+.source-choice input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer;margin:0}
+.source-choice strong{font-size:15px}.source-choice small{font-size:10px;color:var(--muted);max-width:120px}
+.source-icon{font-size:35px}
+.camera-choice{background:linear-gradient(145deg,#eaf7ff,#f8fcff);border-color:#c7e4f8}
+.gallery-choice{background:linear-gradient(145deg,#f3edff,#fff7fb);border-color:#dcd0f4}
+.photo-launch{display:flex!important;align-items:center;gap:12px;cursor:pointer}
+.photo-launch span{display:flex;flex-direction:column}.photo-launch small{font-weight:600;color:var(--muted);margin-top:2px}
+.photo-picker-icon{font-size:28px}
+
+/* More colorful exercise area without introducing unverified photos */
+.photo-exercise{border-radius:19px;margin:8px -5px;padding:15px 5px 20px}
+.photo-exercise:nth-of-type(4n+1){background:linear-gradient(180deg,rgba(232,246,255,.58),transparent)}
+.photo-exercise:nth-of-type(4n+2){background:linear-gradient(180deg,rgba(237,250,243,.64),transparent)}
+.photo-exercise:nth-of-type(4n+3){background:linear-gradient(180deg,rgba(255,244,226,.64),transparent)}
+.photo-exercise:nth-of-type(4n){background:linear-gradient(180deg,rgba(243,238,255,.60),transparent)}
+.exercise-photo-btn{box-shadow:0 14px 32px rgba(18,44,68,.18)}
+.exercise-photo-label{background:rgba(4,35,60,.54);padding:5px 9px;border-radius:10px;backdrop-filter:blur(5px)}
+.progression-hint{border-left:4px solid #55a8e8;background:linear-gradient(90deg,#eff8ff,#f7fbff)}
+.set-table{box-shadow:0 5px 16px rgba(24,51,75,.05)}
+.notice.success{background:linear-gradient(135deg,#e5f8ed,#f5fff9)}
+.pill{box-shadow:0 4px 12px rgba(37,79,109,.06)}
+
+@media(max-width:390px){
+ .photo-source-actions{grid-template-columns:1fr}
+ .source-choice{min-height:105px;flex-direction:row;text-align:left;justify-content:flex-start;padding:16px 18px}
+ .source-choice small{max-width:none}
+}
