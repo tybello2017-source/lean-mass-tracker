@@ -40,3 +40,4 @@ GITHUB-FRIENDLY V1.5 PACKAGE
 - This removes the need to upload 89 separate meal-photo files.
 - Upload everything inside this folder to the repository in one browser upload.
 - No change to the visible meal images or V1.5 app behaviour.
+V1.5 deployment refresh - 18 August 2026
