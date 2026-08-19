@@ -1,25 +1,9 @@
 const STORE='leanMassTrackerV1';
-const VERSION='1.5';
+const VERSION='1.6';
 const PHOTO_DB='LeanMassPhotos';
 let seed,state,selectedDate=isoToday(),mealMode='recent',currentPhotoBlob=null,calendarAnchor=isoToday(),photoTarget=null,mealPhotoMap={bySlug:{}};
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-const demoMap={
- 'Goblet squat':['goblet-squat.svg','Hold a dumbbell at chest; sit hips down/back; keep heels down.'],
- 'Barbell bench press':['barbell-bench-press.svg','Shoulder blades back/down, feet planted; lower under control.'],
- 'One-arm dumbbell row':['one-arm-dumbbell-row.svg','Support on bench, pull elbow toward hip, avoid torso twisting.'],
- 'Barbell Romanian deadlift':['romanian-deadlift.svg','Soft knees, push hips back, keep bar close and spine neutral.'],
- 'Dumbbell shoulder press':['dumbbell-shoulder-press.svg','Brace abdomen and press overhead without excessive back arch.'],
- 'Dumbbell curl':['dumbbell-curl.svg','Keep elbows near ribs and avoid swinging.'],
- 'Bulgarian split squat':['bulgarian-split-squat.svg','Rear foot on bench, lower with control, drive through front foot.'],
- 'Barbell bent-over row':['barbell-bent-over-row.svg','Hold a stable hip hinge and pull toward lower ribs.'],
- 'Incline dumbbell press':['incline-dumbbell-press.svg','Use a modest incline and keep shoulders back.'],
- 'Barbell/dumbbell hip thrust':['hip-thrust.svg','Upper back on bench; squeeze glutes at top without overextending.'],
- 'Dumbbell lateral raise':['dumbbell-lateral-raise.svg','Use light weight; raise to shoulder height without swinging.'],
- 'DB overhead triceps extension':['overhead-triceps-extension.svg','Keep upper arms still while extending the elbows.'],
- 'Dumbbell reverse lunge':['reverse-lunge.svg','Step back and keep a stable shoulder-width stance.'],
- 'DB curl + triceps extension':['dumbbell-curl.svg','Perform curls and triceps extensions with controlled tempo.'],
- 'Plank':['plank.svg','Elbows under shoulders; squeeze abs/glutes and keep hips level.']
-};
+const demoMap={"Alternate dumbbell curl":["alternate-dumbbell-curl.svg","Curl one dumbbell at a time; keep elbow close to your side."],"Hammer curl":["hammer-curl.svg","Use a neutral grip and avoid swinging."],"Concentration curl":["concentration-curl.svg","Brace elbow against inner thigh and curl slowly."],"Dumbbell curl":["dumbbell-curl.svg","Keep elbows near ribs and avoid swinging."],"DB overhead triceps extension":["db-overhead-triceps-extension.svg","Keep upper arms still while extending the elbows."],"Lying dumbbell triceps extension":["lying-dumbbell-triceps-extension.svg","Keep upper arms steady; bend only at the elbows."],"Triceps kickback":["triceps-kickback.svg","Keep upper arm parallel to torso; fully extend elbow."],"Close-grip bench press":["close-grip-bench-press.svg","Use a comfortable close grip; keep elbows controlled."],"Dumbbell shoulder press":["dumbbell-shoulder-press.svg","Brace abdomen and press overhead without excessive back arch."],"Arnold press":["arnold-press.svg","Rotate smoothly through the press; do not force shoulder range."],"Dumbbell lateral raise":["dumbbell-lateral-raise.svg","Use light weight; raise to shoulder height without swinging."],"Dumbbell front raise":["dumbbell-front-raise.svg","Raise under control to about shoulder height."],"Barbell bench press":["barbell-bench-press.svg","Shoulder blades back/down, feet planted; lower under control."],"Incline dumbbell press":["incline-dumbbell-press.svg","Use a modest incline and keep shoulders back."],"Dumbbell bench fly":["dumbbell-bench-fly.svg","Keep a soft elbow bend; stop before shoulder discomfort."],"Incline dumbbell fly":["incline-dumbbell-fly.svg","Use light dumbbells and a modest incline."],"Dumbbell squeeze press":["dumbbell-squeeze-press.svg","Press dumbbells together throughout the movement."],"Dumbbell pullover":["dumbbell-pullover.svg","Keep ribs controlled and use a comfortable shoulder range."],"One-arm dumbbell row":["one-arm-dumbbell-row.svg","Support on bench, pull elbow toward hip, avoid torso twisting."],"Barbell bent-over row":["barbell-bent-over-row.svg","Hold a stable hip hinge and pull toward lower ribs."],"Reverse fly":["reverse-fly.svg","Use light weights and move from the rear shoulders."],"Dumbbell shrug":["dumbbell-shrug.svg","Lift shoulders straight up; pause briefly; do not roll."],"Goblet squat":["goblet-squat.svg","Hold a dumbbell at chest; sit hips down/back; keep heels down."],"Bulgarian split squat":["bulgarian-split-squat.svg","Rear foot on bench, lower with control, drive through front foot."],"Dumbbell reverse lunge":["dumbbell-reverse-lunge.svg","Step back and keep a stable shoulder-width stance."],"Barbell Romanian deadlift":["barbell-romanian-deadlift.svg","Soft knees, push hips back, keep bar close and spine neutral."],"Barbell/dumbbell hip thrust":["barbell-dumbbell-hip-thrust.svg","Upper back on bench; squeeze glutes at top without overextending."],"Standing calf raise":["standing-calf-raise.svg","Use full comfortable range and pause at the top."],"Plank":["plank.svg","Elbows under shoulders; squeeze abs/glutes and keep hips level."],"Lying leg raise":["lying-leg-raise.svg","Keep lower back controlled; lower legs slowly."],"Crunch":["crunch.svg","Lift shoulder blades with your abs; avoid pulling the neck."],"Mountain climber":["mountain-climber.svg","Keep shoulders over hands and hips steady."],"Bicycle crunch":["bicycle-crunch.svg","Rotate through the torso slowly; do not pull the neck."]};
 const exerciseImageMap={
  'Goblet squat':'goblet-squat.jpg',
  'Barbell bench press':'barbell-bench-press.jpg',
@@ -72,15 +56,10 @@ function mealVisual(m, cls='meal-thumb'){
  const src=mealImage(m?.name||'');if(src)return `<img class="${cls}" src="${src}" alt="${esc(m?.name||'Meal')}" loading="lazy">`;
  return `<div class="${cls} food-placeholder cat-${mealCategory(m?.name||'')}"><span class="food-emoji">${mealEmoji(m?.name||'')}</span><span class="placeholder-spark">✦</span></div>`;
 }
-const verifiedExercisePhotos={
- 'Barbell bench press':'barbell-bench-press.jpg',
- 'One-arm dumbbell row':'one-arm-dumbbell-row.jpg'
-};
+const verifiedExercisePhotos={};
 function exerciseVisual(name, cls='exercise-photo'){
- const f=verifiedExercisePhotos[name];
- if(f)return `<img class="${cls}" src="assets/workouts/${f}" alt="${esc(name)}">`;
  const d=demoMap[name]?.[0];
- return `<div class="${cls} exercise-safe-placeholder">${d?`<img src="demos/${d}" alt="${esc(name)} form guide">`:''}<span>${esc(name)}</span><small>Exercise-specific form guide</small></div>`;
+ return `<div class="${cls} exercise-v16-card">${d?`<img src="demos/${d}" alt="${esc(name)} exercise guide">`:''}</div>`;
 }
 function isoToday(){const d=new Date();return iso(d)}
 function iso(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
@@ -98,13 +77,20 @@ function pct(v,t){return Math.max(0,Math.min(100,Math.round((v/t)*100)||0))}
 function allMeals(){return[...(state.meals||[]),...(state.customMeals||[])]}
 function latestValue(field){const es=Object.entries(state.logs).filter(([,x])=>x[field]!=null).sort(([a],[b])=>b.localeCompare(a));return es.length?+es[0][1][field]:null}
 function migrate(){
- state.version=VERSION;state.customMeals=state.customMeals||[];state.mealPhotoOverrides=state.mealPhotoOverrides||{};state.favorites=state.favorites||[];state.recentMeals=state.recentMeals||[];state.reminders=state.reminders||defaultReminders();state.reminderFired=state.reminderFired||{};state.settings=state.settings||{...seed.setup};
+ const prior=state.version||'1.0';
+ state.customMeals=state.customMeals||[];state.mealPhotoOverrides=state.mealPhotoOverrides||{};state.favorites=state.favorites||[];state.recentMeals=state.recentMeals||[];state.reminders=state.reminders||defaultReminders();state.reminderFired=state.reminderFired||{};state.settings=state.settings||{...seed.setup};
+ state.exerciseLibrary=seed.exerciseLibrary||[];
+ if(prior!=='1.6'){
+   const added={};
+   for(const k of ['A','B','C']) added[k]=(state.workouts?.[k]||[]).filter(x=>x.userAdded);
+   state.workouts=JSON.parse(JSON.stringify(seed.workouts));
+   for(const k of ['A','B','C']) state.workouts[k].push(...added[k]);
+ }
+ state.version=VERSION;
  Object.values(state.logs||{}).forEach(l=>{
    for(const[k,v]of Object.entries(blankLog()))if(l[k]===undefined)l[k]=v;
    l.workoutLog=l.workoutLog||{};
-   Object.values(l.workoutLog).forEach(v=>{
-     if(v && !v.sets && (v.load!=null || v.reps!=null)) v.sets=[{load:v.load??null,reps:v.reps??null,rir:null,done:true}];
-   });
+   Object.values(l.workoutLog).forEach(v=>{if(v&&!v.sets&&(v.load!=null||v.reps!=null))v.sets=[{load:v.load??null,reps:v.reps??null,rir:null,done:true}]});
  });
  save();
 }
@@ -112,7 +98,7 @@ function defaultReminders(){return{breakfast:{label:'Breakfast',enabled:false,ti
 async function boot(){
  seed=await fetch('seed-data.json',{cache:'no-store'}).then(r=>r.json());
 mealPhotoMap=await fetch('assets/meal-photo-map-v15.json',{cache:'no-store'}).then(r=>r.json()).catch(()=>({bySlug:{}}));setupPhotoChooser();const stored=localStorage.getItem(STORE);
- if(stored){state=JSON.parse(stored);migrate()}else{state={version:VERSION,startDate:'2026-08-14',settings:{...seed.setup},meals:seed.meals,workouts:seed.workouts,logs:{},customMeals:[],favorites:[],recentMeals:[],reminders:defaultReminders(),reminderFired:{}};for(const[date,x]of Object.entries(seed.historical))state.logs[date]={...blankLog(),...x,workoutLog:{}};save()}
+ if(stored){state=JSON.parse(stored);migrate()}else{state={version:VERSION,startDate:'2026-08-14',settings:{...seed.setup},meals:seed.meals,workouts:JSON.parse(JSON.stringify(seed.workouts)),exerciseLibrary:seed.exerciseLibrary||[],logs:{},customMeals:[],favorites:[],recentMeals:[],reminders:defaultReminders(),reminderFired:{}};for(const[date,x]of Object.entries(seed.historical))state.logs[date]={...blankLog(),...x,workoutLog:{}};save()}
  setupNav();setupMealDialog();setupReminders();renderAll();checkReminders();setInterval(checkReminders,60000);
  if('serviceWorker'in navigator){navigator.serviceWorker.register('./sw.js').then(reg=>{reg.update();if(reg.waiting)showUpdateBanner(reg)}).catch(()=>{});navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!sessionStorage.getItem('reloaded12')){sessionStorage.setItem('reloaded12','1');location.reload()}})}
 }
@@ -241,24 +227,51 @@ function progressionHint(k,x,i,date){
 }
 function renderWorkouts(){
  const buttons=['A','B','C'].map(k=>`<button class="chip ${(state.uiWorkout||'A')===k?'active':''}" onclick="state.uiWorkout='${k}';renderWorkouts()">Workout ${k}</button>`).join(''),k=state.uiWorkout||'A',flex=seed.flex[k],ex=state.workouts[k],log=logFor(selectedDate);
- $('#view-workouts').innerHTML=`<div class="section-title"><div><span class="muted">Home programme · V1.5</span><h2>Workout ${k}</h2></div><span class="pill">${log.training==='Yes'&&log.workout===k?'Completed':'3 / week'}</span></div>
- <div class="notice success"><b>Flexible:</b> preferred ${flex.preferred}; alternative ${flex.alternative}. Friday/Sunday are make-up slots, not extra compulsory sessions.</div><div class="tabbar">${buttons}</div>
+ $('#view-workouts').innerHTML=`<div class="section-title"><div><span class="muted">Expanded home programme · V1.6</span><h2>Workout ${k}</h2></div><span class="pill">${log.training==='Yes'&&log.workout===k?'Completed':'3 / week'}</span></div>
+ <div class="notice success"><b>Flexible:</b> preferred ${flex.preferred}; alternative ${flex.alternative}. Friday/Sunday remain make-up slots, not extra compulsory sessions.</div>
+ <div class="tabbar">${buttons}</div>
+ <div class="workout-library-strip"><div><b>Exercise Library</b><span>${(state.exerciseLibrary||[]).length} home-friendly exercises</span></div><button class="primary compact" onclick="openExerciseLibrary('${k}')">＋ Add exercise</button></div>
+ <div class="muscle-chips">${['Chest','Back','Shoulders','Biceps','Triceps','Legs','Abs/Core'].map(c=>`<span>${c}</span>`).join('')}</div>
  <div class="card"><div class="row between"><div><span class="muted">${fmtDate(selectedDate)}</span><h3>Workout ${k}</h3></div><button class="ghost" onclick="selectedDate=isoToday();renderAll()">Today</button></div>${ex.map((x,i)=>exerciseHtml(k,x,i,log)).join('')}<button class="primary full" onclick="completeWorkout('${k}')">Mark Workout ${k} complete</button></div>
- <div class="notice">V1.4 shows a real exercise photo only where the movement has been verified; otherwise it uses the correct exercise-specific form guide rather than a mismatched photo. Use them as visual references; stop for sharp pain, dizziness, or unusual symptoms.</div>`;
+ <div class="notice"><b>V1.6:</b> expanded exercise choices inspired by the movements you already track on your phone. Pull-ups and dips are deliberately excluded because they require equipment you do not currently have. Exercise artwork in Lean Mass Tracker is original and not copied from the other app.</div>`;
 }
 function exerciseHtml(k,x,i,log){
  const key=`${k}-${i}`,v=log.workoutLog?.[key]||{},sets=Array.from({length:+x.sets||3},(_,si)=>v.sets?.[si]||{}),hint=progressionHint(k,x,i,selectedDate);
- return`<div class="exercise-row photo-exercise"><button class="exercise-photo-btn" onclick="openDemo('${encodeURIComponent(x.exercise)}')">${exerciseVisual(x.exercise,'exercise-photo')}<span class="play-badge">▶</span><span class="exercise-photo-label">${esc(x.exercise)}</span></button><div class="row between"><div><strong>${esc(x.exercise)}</strong><div class="muted">${x.sets} sets · ${esc(x.reps)}</div></div><button class="ghost tiny" onclick="openDemo('${encodeURIComponent(x.exercise)}')">Demo</button></div>${x.note?`<div class="tiny muted">${esc(x.note)}</div>`:''}<div class="progression-hint">${esc(hint)}</div>
+ return`<div class="exercise-row photo-exercise ${x.userAdded?'user-added':''}"><button class="exercise-photo-btn" onclick="openDemo('${encodeURIComponent(x.exercise)}')">${exerciseVisual(x.exercise,'exercise-photo')}<span class="play-badge">▶</span><span class="exercise-photo-label">${esc(x.exercise)}</span></button><div class="row between"><div><strong>${esc(x.exercise)}</strong><div class="muted">${x.sets} sets · ${esc(x.reps)}</div></div><button class="ghost tiny" onclick="openDemo('${encodeURIComponent(x.exercise)}')">Demo</button></div>${x.note?`<div class="tiny muted">${esc(x.note)}</div>`:''}<div class="progression-hint">${esc(hint)}</div>
  <div class="set-table"><div class="set-head"><span>Set</span><span>Load kg</span><span>Reps</span><span>RIR</span><span>Done</span></div>${sets.map((sv,si)=>`<div class="set-row"><b>${si+1}</b><input inputmode="decimal" type="number" step="0.5" id="load-${key}-${si}" value="${sv.load??''}" placeholder="kg"><input inputmode="numeric" type="number" id="reps-${key}-${si}" value="${sv.reps??''}" placeholder="${esc(x.reps)}"><select id="rir-${key}-${si}"><option value=""></option>${[0,1,2,3,4].map(n=>`<option value="${n}" ${String(sv.rir)===String(n)?'selected':''}>${n}</option>`).join('')}</select><input class="set-check" type="checkbox" id="done-${key}-${si}" ${sv.done?'checked':''}></div>`).join('')}</div>
- <div class="row between exercise-actions"><button class="secondary compact" onclick="copyPrevious('${k}',${i})">Copy previous</button><button class="ghost" onclick="saveExerciseSets('${key}',${x.sets})">Save exercise</button></div></div>`;
+ <div class="row between exercise-actions"><button class="secondary compact" onclick="copyPrevious('${k}',${i})">Copy previous</button><div class="row gap-sm"><button class="ghost" onclick="saveExerciseSets('${key}',${x.sets})">Save exercise</button>${x.userAdded?`<button class="ghost danger-text" onclick="removeWorkoutExercise('${k}',${i})">Remove</button>`:''}</div></div></div>`;
 }
+
+function openExerciseLibrary(k){
+ state.libraryWorkout=k;state.libraryCategory='All';
+ renderExerciseLibraryDialog();$('#exerciseLibraryDialog').showModal();
+}
+function renderExerciseLibraryDialog(){
+ const k=state.libraryWorkout||state.uiWorkout||'A',cat=state.libraryCategory||'All',cats=['All','Chest','Back','Shoulders','Biceps','Triceps','Legs','Abs/Core'];
+ const items=(state.exerciseLibrary||[]).filter(x=>cat==='All'||x.category===cat);
+ $('#exerciseLibraryBody').innerHTML=`<div class="dialog-head"><button class="text-btn" onclick="$('#exerciseLibraryDialog').close()">Close</button><h3>Add to Workout ${k}</h3><span></span></div>
+ <p class="muted">Choose an exercise that works with your current dumbbells, barbell and bench. Pull-ups and dips are excluded.</p>
+ <div class="library-categories">${cats.map(c=>`<button class="${c===cat?'active':''}" onclick="state.libraryCategory='${c}';renderExerciseLibraryDialog()">${c}</button>`).join('')}</div>
+ <div class="exercise-library-grid">${items.map(x=>`<article class="library-card">${exerciseVisual(x.exercise,'library-exercise-img')}<div class="library-card-body"><span class="library-cat">${esc(x.category)}</span><h4>${esc(x.exercise)}</h4><div class="muted">${esc(x.equipment)} · ${x.sets} sets · ${esc(x.reps)}</div><p>${esc(x.cue)}</p><button class="primary compact full" onclick="addWorkoutExercise('${k}','${encodeURIComponent(x.exercise)}')">Add to Workout ${k}</button></div></article>`).join('')}</div>`;
+}
+function addWorkoutExercise(k,encoded){
+ const name=decodeURIComponent(encoded),src=(state.exerciseLibrary||[]).find(x=>x.exercise===name);if(!src)return;
+ if((state.workouts[k]||[]).some(x=>x.exercise===name)){toast('Already in this workout');return}
+ state.workouts[k].push({exercise:src.exercise,sets:src.sets,reps:src.reps,note:`${src.category} · ${src.equipment}`,userAdded:true});
+ save();$('#exerciseLibraryDialog').close();renderWorkouts();toast(`${name} added`);
+}
+function removeWorkoutExercise(k,i){
+ const x=state.workouts[k]?.[i];if(!x?.userAdded)return;
+ if(confirm(`Remove ${x.exercise} from Workout ${k}?`)){state.workouts[k].splice(i,1);save();renderWorkouts();toast('Exercise removed')}
+}
+
 function copyPrevious(k,i){const prev=previousExerciseSets(k,i,selectedDate);if(!prev){toast('No previous set log yet');return}const key=`${k}-${i}`;prev.sets.forEach((sv,si)=>{const a=$(`#load-${key}-${si}`),b=$(`#reps-${key}-${si}`),c=$(`#rir-${key}-${si}`);if(a)a.value=sv.load??'';if(b)b.value=sv.reps??'';if(c)c.value=sv.rir??''});toast(`Copied ${fmtDate(prev.date)}`)}
 function openDemo(encoded){
  const name=decodeURIComponent(encoded),d=demoMap[name]||['','Use controlled form.'];
  $('#demoBody').innerHTML=`<div class="dialog-head"><button class="text-btn" onclick="$('#demoDialog').close()">Close</button><h3>${esc(name)}</h3><span></span></div>
  <div class="demo-hero">${exerciseVisual(name,'exercise-demo-photo')}<span class="demo-play">▶</span></div>
  <div class="demo-cue"><b>Key cue</b><div class="muted">${esc(d[1])}</div></div>
- <div class="notice success"><b>Tempo:</b> controlled lowering, smooth return, steady breathing. Stop if technique breaks down.</div>`;
+ <div class="notice success"><b>Tempo:</b> controlled lowering, smooth return, steady breathing. Start with a manageable load and stop if technique breaks down.</div>`;
  $('#demoDialog').showModal()
 }
 function saveExerciseSets(key,count){const l=logFor(selectedDate);l.workoutLog=l.workoutLog||{};const sets=[];for(let si=0;si<count;si++)sets.push({load:numOrNull($(`#load-${key}-${si}`).value),reps:numOrNull($(`#reps-${key}-${si}`).value),rir:numOrNull($(`#rir-${key}-${si}`).value),done:$(`#done-${key}-${si}`).checked});l.workoutLog[key]={sets};save();toast('Exercise sets saved')}
@@ -268,7 +281,7 @@ function metricCard(f){const label={waist:'Waist',chest:'Chest',arm:'Upper arm',
 function drawWeightChart(){const c=$('#weightChart');if(!c)return;const ctx=c.getContext('2d'),W=c.width,H=c.height,p=44,startD=dateObj(state.startDate),end=new Date(startD.getTime()+83*86400000),weights=Object.entries(state.logs).filter(([,x])=>x.weight!=null).sort(([a],[b])=>a.localeCompare(b)),min=Math.min(61,state.settings.startWeight-2,...weights.map(x=>x[1].weight)),max=Math.max(70,state.settings.goalWeight+2,...weights.map(x=>x[1].weight)),x=d=>p+((dateObj(d)-startD)/(end-startD))*(W-2*p),y=v=>H-p-((v-min)/(max-min))*(H-2*p);ctx.clearRect(0,0,W,H);ctx.font='12px -apple-system';for(let v=Math.ceil(min);v<=max;v++){ctx.strokeStyle='#e3e8ee';ctx.beginPath();ctx.moveTo(p,y(v));ctx.lineTo(W-p,y(v));ctx.stroke();ctx.fillStyle='#7b8790';ctx.fillText(v,10,y(v)+4)}ctx.strokeStyle='#aab7c2';ctx.setLineDash([7,7]);ctx.beginPath();ctx.moveTo(p,y(state.settings.startWeight));ctx.lineTo(W-p,y(state.settings.goalWeight));ctx.stroke();ctx.setLineDash([]);if(weights.length){ctx.strokeStyle='#0a64d8';ctx.lineWidth=4;ctx.beginPath();weights.forEach(([d,l],i)=>i?ctx.lineTo(x(d),y(l.weight)):ctx.moveTo(x(d),y(l.weight)));ctx.stroke();weights.forEach(([d,l])=>{ctx.fillStyle='#103d61';ctx.beginPath();ctx.arc(x(d),y(l.weight),5,0,Math.PI*2);ctx.fill()})}}
 function drawBodyChart(){const c=$('#bodyChart');if(!c)return;const ctx=c.getContext('2d'),W=c.width,H=c.height,p=44,fields=['waist','chest','arm','thigh'],colors=['#0a64d8','#35ad70','#e58a23','#7959c7'],entries=Object.entries(state.logs).sort(([a],[b])=>a.localeCompare(b)),vals=[];entries.forEach(([,l])=>fields.forEach(f=>{if(l[f]!=null)vals.push(+l[f])}));ctx.clearRect(0,0,W,H);if(!vals.length){ctx.fillStyle='#7b8790';ctx.font='16px -apple-system';ctx.fillText('Add waist, chest, arm or thigh measurements to see trends.',30,80);return}const min=Math.max(0,Math.min(...vals)-4),max=Math.max(...vals)+4,start=dateObj(state.startDate),end=new Date(start.getTime()+83*86400000),x=d=>p+((dateObj(d)-start)/(end-start))*(W-2*p),y=v=>H-p-((v-min)/(max-min))*(H-2*p);fields.forEach((f,fi)=>{const pts=entries.filter(([,l])=>l[f]!=null);if(!pts.length)return;ctx.strokeStyle=colors[fi];ctx.lineWidth=3;ctx.beginPath();pts.forEach(([d,l],i)=>i?ctx.lineTo(x(d),y(l[f])):ctx.moveTo(x(d),y(l[f])));ctx.stroke();ctx.fillStyle=colors[fi];ctx.font='12px -apple-system';ctx.fillText({waist:'Waist',chest:'Chest',arm:'Arm',thigh:'Thigh'}[f],50+fi*115,22)})}
 
-function renderSettings(){const s=state.settings;$('#view-settings').innerHTML=`<div class="section-title"><div><span class="muted">V1.3</span><h2>More</h2></div></div><div class="card"><h3>Targets</h3><div class="two-col"><label>Starting weight<input id="setStart" type="number" step="0.1" value="${s.startWeight}"></label><label>Goal weight<input id="setGoal" type="number" step="0.1" value="${s.goalWeight}"></label><label>Protein target<input id="setProtein" type="number" value="${s.proteinTarget}"></label><label>Programme start<input id="setDate" type="date" value="${state.startDate}"></label></div><button class="primary" onclick="saveSettings()">Save targets</button></div><div class="card"><div class="row between"><h3>Reminders</h3><button class="ghost" onclick="openReminderDialog()">Configure</button></div><p class="muted">Meal, Serious Mass, workout and weigh-in reminders. Notifications require permission.</p><button class="secondary" onclick="requestNotifications()">Enable notifications</button></div><div class="card"><h3>Serious Mass</h3><div class="metricline"><span>1 heaped scoop</span><b>631 kcal · 25 g</b></div><div class="muted">168 g powder; approximately 124 g carbohydrate and 1.5 g creatine.</div></div><div class="card"><h3>Backup & restore</h3><p class="muted">Export includes logs, settings, custom foods and meal photos. Keep a periodic backup outside Safari.</p><div class="actions"><button class="primary" onclick="exportBackup()">Export backup</button><label class="secondary" style="text-align:center;cursor:pointer">Import backup<input type="file" accept="application/json" hidden onchange="importBackup(this.files[0])"></label></div></div><div class="card"><h3>About V1.3</h3><p class="muted">Photo-rich meal library, custom-meal photo uploads, photo-based workout demo cards, per-set exercise logging, genuine weekly statistics and calendar status.</p><p class="footer-note">Reminder limitation: GitHub Pages has no notification server. V1.3 can notify while the app is active/recently opened and checks overdue reminders when reopened, but reliable background push while fully closed requires a later server-backed push service.</p></div><div class="card"><button class="secondary danger" onclick="resetApp()">Reset app data</button></div>`}
+function renderSettings(){const s=state.settings;$('#view-settings').innerHTML=`<div class="section-title"><div><span class="muted">V1.3</span><h2>More</h2></div></div><div class="card"><h3>Targets</h3><div class="two-col"><label>Starting weight<input id="setStart" type="number" step="0.1" value="${s.startWeight}"></label><label>Goal weight<input id="setGoal" type="number" step="0.1" value="${s.goalWeight}"></label><label>Protein target<input id="setProtein" type="number" value="${s.proteinTarget}"></label><label>Programme start<input id="setDate" type="date" value="${state.startDate}"></label></div><button class="primary" onclick="saveSettings()">Save targets</button></div><div class="card"><div class="row between"><h3>Reminders</h3><button class="ghost" onclick="openReminderDialog()">Configure</button></div><p class="muted">Meal, Serious Mass, workout and weigh-in reminders. Notifications require permission.</p><button class="secondary" onclick="requestNotifications()">Enable notifications</button></div><div class="card"><h3>Serious Mass</h3><div class="metricline"><span>1 heaped scoop</span><b>631 kcal · 25 g</b></div><div class="muted">168 g powder; approximately 124 g carbohydrate and 1.5 g creatine.</div></div><div class="card"><h3>Backup & restore</h3><p class="muted">Export includes logs, settings, custom foods and meal photos. Keep a periodic backup outside Safari.</p><div class="actions"><button class="primary" onclick="exportBackup()">Export backup</button><label class="secondary" style="text-align:center;cursor:pointer">Import backup<input type="file" accept="application/json" hidden onchange="importBackup(this.files[0])"></label></div></div><div class="card"><h3>About V1.6</h3><p class="muted">Photo-rich meals plus an expanded home workout library with muscle-group filters, add/remove exercise options, original exercise illustrations, per-set load/reps/RIR logging, and progressive-overload tracking.</p><p class="footer-note">Reminder limitation: GitHub Pages has no notification server. V1.6 can notify while the app is active/recently opened and checks overdue reminders when reopened, but reliable background push while fully closed requires a later server-backed push service.</p></div><div class="card"><button class="secondary danger" onclick="resetApp()">Reset app data</button></div>`}
 function saveSettings(){state.settings.startWeight=+$('#setStart').value;state.settings.goalWeight=+$('#setGoal').value;state.settings.proteinTarget=+$('#setProtein').value;state.startDate=$('#setDate').value;save();renderAll();toast('Targets saved')}
 
 function setupReminders(){}
@@ -291,9 +304,9 @@ async function openMealPhoto(date,index){const m=state.logs[date]?.meals?.[index
 function compressImage(file){return new Promise((res,rej)=>{const im=new Image(),u=URL.createObjectURL(file);im.onload=()=>{const max=1200,s=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext('2d').drawImage(im,0,0,c.width,c.height);c.toBlob(b=>{URL.revokeObjectURL(u);b?res(b):rej(new Error('Photo compression failed'))},'image/jpeg',.72)};im.onerror=rej;im.src=u})}
 function blobToDataURL(blob){return new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(blob)})}
 function dataURLToBlob(s){const [h,b64]=s.split(','),mime=h.match(/:(.*?);/)[1],bin=atob(b64),arr=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)arr[i]=bin.charCodeAt(i);return new Blob([arr],{type:mime})}
-async function exportBackup(){const photos=await allPhotoRecords(),encoded={};for(const[id,b]of Object.entries(photos))encoded[id]=await blobToDataURL(b);const pack={app:'Lean Mass Tracker',version:VERSION,exportedAt:new Date().toISOString(),state,photos:encoded},blob=new Blob([JSON.stringify(pack)],{type:'application/json'}),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=`lean-mass-v1-3-backup-${isoToday()}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);toast('Backup exported')}
+async function exportBackup(){const photos=await allPhotoRecords(),encoded={};for(const[id,b]of Object.entries(photos))encoded[id]=await blobToDataURL(b);const pack={app:'Lean Mass Tracker',version:VERSION,exportedAt:new Date().toISOString(),state,photos:encoded},blob=new Blob([JSON.stringify(pack)],{type:'application/json'}),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=`lean-mass-v1-6-backup-${isoToday()}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);toast('Backup exported')}
 function importBackup(file){if(!file)return;const r=new FileReader();r.onload=async()=>{try{const pack=JSON.parse(r.result);state=pack.state||pack;migrate();if(pack.photos)for(const[id,data]of Object.entries(pack.photos))await putPhoto(id,dataURLToBlob(data));save();renderAll();toast('Backup restored')}catch(e){alert('That backup could not be restored.')}};r.readAsText(file)}
 function resetApp(){if(confirm('Reset all app data back to the starter tracker?')){localStorage.removeItem(STORE);indexedDB.deleteDatabase(PHOTO_DB);location.reload()}}
 
-window.openMeal=openMeal;window.deleteMeal=deleteMeal;window.saveCheckin=saveCheckin;window.quickMass=quickMass;window.showView=showView;window.shiftWeek=shiftWeek;window.renderMeals=renderMeals;window.mealLibraryMode=mealLibraryMode;window.toggleFavoriteName=toggleFavoriteName;window.addCustomMeal=addCustomMeal;window.renderWorkouts=renderWorkouts;window.openDemo=openDemo;window.saveExerciseSets=saveExerciseSets;window.copyPrevious=copyPrevious;window.completeWorkout=completeWorkout;window.saveSettings=saveSettings;window.openReminderDialog=openReminderDialog;window.updateReminder=updateReminder;window.requestNotifications=requestNotifications;window.testNotification=testNotification;window.openMealPhoto=openMealPhoto;window.exportBackup=exportBackup;window.importBackup=importBackup;window.resetApp=resetApp;
+window.openMeal=openMeal;window.deleteMeal=deleteMeal;window.saveCheckin=saveCheckin;window.quickMass=quickMass;window.showView=showView;window.shiftWeek=shiftWeek;window.renderMeals=renderMeals;window.mealLibraryMode=mealLibraryMode;window.toggleFavoriteName=toggleFavoriteName;window.addCustomMeal=addCustomMeal;window.renderWorkouts=renderWorkouts;window.openExerciseLibrary=openExerciseLibrary;window.renderExerciseLibraryDialog=renderExerciseLibraryDialog;window.addWorkoutExercise=addWorkoutExercise;window.removeWorkoutExercise=removeWorkoutExercise;window.openDemo=openDemo;window.saveExerciseSets=saveExerciseSets;window.copyPrevious=copyPrevious;window.completeWorkout=completeWorkout;window.saveSettings=saveSettings;window.openReminderDialog=openReminderDialog;window.updateReminder=updateReminder;window.requestNotifications=requestNotifications;window.testNotification=testNotification;window.openMealPhoto=openMealPhoto;window.exportBackup=exportBackup;window.importBackup=importBackup;window.resetApp=resetApp;
 boot();

@@ -40,4 +40,13 @@ GITHUB-FRIENDLY V1.5 PACKAGE
 - This removes the need to upload 89 separate meal-photo files.
 - Upload everything inside this folder to the repository in one browser upload.
 - No change to the visible meal images or V1.5 app behaviour.
-V1.5 deployment refresh - 18 August 2026
+
+
+V1.6 — Expanded Workout Library + Progressive Overload
+- Added 33 home-friendly exercises across Biceps, Triceps, Shoulders, Chest, Back, Legs and Abs/Core.
+- Pull-ups and dips are intentionally excluded because the current home setup has no pull-up/dip bars.
+- Added an in-app Exercise Library with category filters and “Add to Workout A/B/C”.
+- User-added exercises can be removed again without changing the core programme.
+- Added original Lean Mass Tracker exercise illustrations; no proprietary images were copied from the other bodybuilding app.
+- Retains per-set Load kg, Reps, RIR, Done, Copy Previous, progression hints and 3-day flexible scheduling.
+- Preserves V1.5 meal photos, meal logs, check-ins, backups and local/offline storage.

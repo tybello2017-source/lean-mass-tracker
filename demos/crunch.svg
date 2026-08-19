@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="270" viewBox="0 0 400 270">
+      <rect width="400" height="270" rx="28" fill="#e3e9ff"/>
+      <rect x="18" y="18" width="118" height="32" rx="16" fill="#4d6acb"/>
+      <text x="77" y="39" fill="#fff" font-family="-apple-system,Arial" font-size="14" font-weight="800" text-anchor="middle">Abs/Core</text>
+      <path d="M55 225 H345" stroke="#b8c4cf" stroke-width="4" stroke-linecap="round"/><circle cx="105" cy="185" r="14" fill="#d8a071"/><path d="M120 185 L210 185" stroke="#133c5d" stroke-width="11" stroke-linecap="round"/><path d="M200 185 L255 140 M200 185 L260 200" stroke="#133c5d" stroke-width="9" stroke-linecap="round"/>
+      <text x="200" y="252" fill="#17374f" font-family="-apple-system,Arial" font-size="15" font-weight="800" text-anchor="middle">Crunch</text>
+    </svg>

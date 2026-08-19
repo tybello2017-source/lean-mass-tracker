@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="270" viewBox="0 0 400 270">
+      <rect width="400" height="270" rx="28" fill="#ffe4ec"/>
+      <rect x="18" y="18" width="118" height="32" rx="16" fill="#ef6a88"/>
+      <text x="77" y="39" fill="#fff" font-family="-apple-system,Arial" font-size="14" font-weight="800" text-anchor="middle">Triceps</text>
+      <path d="M55 225 H345" stroke="#b8c4cf" stroke-width="4" stroke-linecap="round"/><circle cx="170" cy="82" r="18" fill="#d8a071"/><path d="M170 101 L215 145" stroke="#133c5d" stroke-width="12" stroke-linecap="round"/><path d="M170 170 L145 220 M170 170 L198 220" stroke="#133c5d" stroke-width="10" stroke-linecap="round"/><path d="M200 132 L250 128 M190 126 L160 155" stroke="#133c5d" stroke-width="9" stroke-linecap="round"/><circle cx="258" cy="128" r="10" fill="#252c34"/>
+      <text x="200" y="252" fill="#17374f" font-family="-apple-system,Arial" font-size="15" font-weight="800" text-anchor="middle">Triceps kickback</text>
+    </svg>
