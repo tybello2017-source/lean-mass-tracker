@@ -50,3 +50,14 @@ V1.6 — Expanded Workout Library + Progressive Overload
 - Added original Lean Mass Tracker exercise illustrations; no proprietary images were copied from the other bodybuilding app.
 - Retains per-set Load kg, Reps, RIR, Done, Copy Previous, progression hints and 3-day flexible scheduling.
 - Preserves V1.5 meal photos, meal logs, check-ins, backups and local/offline storage.
+
+
+V1.7 — Animated Workout Demos + Progress Analytics
+- Integrated 15 exact user-supplied animated workout GIF demos.
+- Added Pull-up and Close-grip chin-up for the incoming home pull-up bar; dips remain excluded.
+- Rearranged Workout A/B/C into a balanced 3-day full-body lean-mass programme.
+- Added 1-week / 2-week / 4-week training-balance progress bars by muscle group.
+- Added logged training-volume totals by muscle group (load × reps for completed sets).
+- Added a 12-week weekly-average calorie-intake chart with calorie-target comparison.
+- Preserves V1.6 meal photos, nutrition logs, weight/body charts, workout logs, local/offline storage and backups.
+- Historical workout logs are migrated with exercise names before the A/B/C programme is rearranged.

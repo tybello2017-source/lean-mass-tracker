@@ -196,3 +196,33 @@ body{
 .library-card-body{padding:12px}.library-card h4{font-size:15px;margin:4px 0 5px;line-height:1.16}.library-card p{font-size:11px;color:#536574;line-height:1.35;min-height:43px}
 .library-cat{display:inline-block;padding:4px 7px;border-radius:99px;background:#eaf4ff;color:#0b5f9c;font-size:9px;font-weight:900}
 @media(max-width:430px){.exercise-library-grid{grid-template-columns:1fr 1fr}.library-exercise-img{height:125px}.library-card-body{padding:10px}.library-card p{display:none}}
+
+/* ================= V1.7 GIF demos + progress analytics ================= */
+.exercise-v17-media{display:block!important;overflow:hidden;background:linear-gradient(145deg,#eef7ff,#f9fbff)}
+.exercise-v17-media img{width:100%;height:100%;object-fit:cover;display:block}
+.exercise-photo.exercise-v17-media img{object-fit:cover}
+.exercise-demo-photo.exercise-v17-media{height:min(58vw,390px);border-radius:22px}
+.exercise-demo-photo.exercise-v17-media img{object-fit:contain;background:#fff}
+.gif-badge{position:absolute;left:14px;top:14px;background:rgba(10,66,106,.9);color:#fff;border-radius:999px;padding:7px 10px;font-size:10px;font-weight:900;letter-spacing:.06em}
+.range-tabs{display:flex;gap:6px;background:#eef2f6;border-radius:999px;padding:4px}
+.range-tabs button{border:0;background:transparent;border-radius:999px;padding:7px 10px;font-size:10px;font-weight:800;color:#62717e}
+.range-tabs button.active{background:#fff;color:#0e5a93;box-shadow:0 2px 8px rgba(21,54,79,.09)}
+.muscle-progress{margin-top:17px;display:grid;gap:11px}
+.muscle-progress-row{display:grid;grid-template-columns:78px 38px 1fr;align-items:center;gap:8px;font-size:12px}
+.muscle-progress-row>b{text-align:right}
+.muscle-track{height:13px;border-radius:99px;background:#edf1f5;overflow:hidden}
+.muscle-track i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#1b70d0,#44b47d)}
+.volume-summary{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 10px}
+.volume-summary>div{background:linear-gradient(145deg,#eef6ff,#f5fbff);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:4px}
+.volume-summary b{font-size:24px}
+.volume-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.volume-grid>div{background:#f6f8fa;border:1px solid #e7ecf0;border-radius:15px;padding:10px 12px;display:flex;justify-content:space-between;gap:8px;font-size:11px}
+.nutrition-chart-wrap{background:linear-gradient(180deg,#fbfdff,#f5f9fd);border-radius:18px;margin-top:14px}
+.chart-legend{display:flex;gap:17px;align-items:center;font-size:10px;color:#6d7a86;margin-top:8px}
+.chart-legend span{display:flex;align-items:center;gap:6px}.chart-legend i{width:22px;height:4px;border-radius:4px;display:inline-block}
+.legend-blue{background:#176fd1}.legend-dash{background:repeating-linear-gradient(90deg,#a5b0bb 0 6px,transparent 6px 10px)}
+@media(max-width:430px){
+ .range-tabs button{padding:6px 8px}
+ .muscle-progress-row{grid-template-columns:64px 34px 1fr;gap:6px}
+ .volume-grid{grid-template-columns:1fr 1fr}
+}

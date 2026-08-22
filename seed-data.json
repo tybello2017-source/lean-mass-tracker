@@ -541,75 +541,75 @@
         "exercise": "Goblet squat",
         "sets": 3,
         "reps": "8\u201312",
-        "note": "Add weight after 12 clean reps on all sets."
+        "note": "Legs \u00b7 controlled depth; add load after 12 clean reps on all sets."
       },
       {
         "exercise": "Barbell bench press",
         "sets": 3,
-        "reps": "8\u201312",
-        "note": "Do not grind reps alone; use a spotter/safeties if available."
+        "reps": "8\u201310",
+        "note": "Chest \u00b7 use safeties/spotter where possible."
       },
       {
         "exercise": "One-arm dumbbell row",
         "sets": 3,
         "reps": "8\u201312/side",
-        "note": "Home replacement for cable row/pulldown."
-      },
-      {
-        "exercise": "Barbell Romanian deadlift",
-        "sets": 3,
-        "reps": "8\u201310",
-        "note": "Controlled lowering; neutral back."
+        "note": "Back \u00b7 pull elbow toward hip; avoid torso twisting."
       },
       {
         "exercise": "Dumbbell shoulder press",
         "sets": 2,
         "reps": "8\u201312",
-        "note": ""
+        "note": "Shoulders \u00b7 brace abdomen; no excessive back arch."
       },
       {
-        "exercise": "Alternate dumbbell curl",
+        "exercise": "Hammer curl",
         "sets": 2,
         "reps": "10\u201315",
-        "note": "Alternate arms; keep elbow close to your side."
+        "note": "Biceps \u00b7 neutral grip and controlled reps."
+      },
+      {
+        "exercise": "Lying dumbbell triceps extension",
+        "sets": 2,
+        "reps": "10\u201315",
+        "note": "Triceps \u00b7 keep upper arms steady."
       }
     ],
     "B": [
       {
-        "exercise": "Bulgarian split squat",
+        "exercise": "Barbell Romanian deadlift",
         "sets": 3,
-        "reps": "8\u201312/leg",
-        "note": "Hold dumbbells as strength improves."
-      },
-      {
-        "exercise": "Barbell bent-over row",
-        "sets": 3,
-        "reps": "8\u201312",
-        "note": ""
+        "reps": "8\u201310",
+        "note": "Legs \u00b7 hip hinge; bar stays close."
       },
       {
         "exercise": "Incline dumbbell press",
         "sets": 3,
         "reps": "8\u201312",
-        "note": "If bench incline is stable."
+        "note": "Chest \u00b7 modest incline; shoulders back."
+      },
+      {
+        "exercise": "Pull-up",
+        "sets": 3,
+        "reps": "5\u201310",
+        "note": "Back \u00b7 use once your pull-up bar arrives. Until then substitute One-arm dumbbell row."
       },
       {
         "exercise": "Barbell/dumbbell hip thrust",
         "sets": 3,
         "reps": "8\u201312",
-        "note": ""
+        "note": "Legs/glutes \u00b7 pause and squeeze at the top."
       },
       {
         "exercise": "Dumbbell lateral raise",
         "sets": 2,
         "reps": "12\u201315",
-        "note": ""
+        "note": "Shoulders \u00b7 light weight, no swinging."
       },
       {
-        "exercise": "DB overhead triceps extension",
+        "exercise": "Lying leg raise",
         "sets": 2,
         "reps": "10\u201315",
-        "note": "Keep upper arms still; controlled elbow extension."
+        "note": "Abs/Core \u00b7 keep lower back controlled."
       }
     ],
     "C": [
@@ -617,49 +617,49 @@
         "exercise": "Dumbbell reverse lunge",
         "sets": 3,
         "reps": "8\u201312/leg",
-        "note": "Stable step-back lunge; hold dumbbells when ready."
+        "note": "Legs \u00b7 stable step-back lunge."
       },
       {
-        "exercise": "Barbell Romanian deadlift",
+        "exercise": "Barbell bent-over row",
         "sets": 3,
-        "reps": "8\u201310",
-        "note": "Controlled lowering; neutral back."
+        "reps": "8\u201312",
+        "note": "Back \u00b7 stable hip hinge; pull toward lower ribs."
       },
       {
         "exercise": "Barbell bench press",
-        "sets": 3,
+        "sets": 2,
         "reps": "8\u201310",
-        "note": "Use spotter/safeties if available; never grind reps alone."
+        "note": "Chest \u00b7 moderate volume; stop with 1\u20133 reps in reserve."
       },
       {
-        "exercise": "One-arm dumbbell row",
-        "sets": 3,
-        "reps": "8\u201312/side",
-        "note": "Pull elbow toward hip; avoid twisting."
-      },
-      {
-        "exercise": "Arnold press",
+        "exercise": "Dumbbell shoulder press",
         "sets": 2,
         "reps": "8\u201312",
-        "note": "Smooth rotation; keep load manageable."
+        "note": "Shoulders \u00b7 controlled overhead press."
+      },
+      {
+        "exercise": "Close-grip chin-up",
+        "sets": 2,
+        "reps": "5\u201310",
+        "note": "Back/biceps \u00b7 use once pull-up bar arrives; optional if fatigued."
       },
       {
         "exercise": "Hammer curl",
         "sets": 2,
         "reps": "10\u201315",
-        "note": "Neutral grip; controlled reps."
+        "note": "Biceps \u00b7 controlled neutral-grip curls."
       },
       {
         "exercise": "Lying dumbbell triceps extension",
         "sets": 2,
         "reps": "10\u201315",
-        "note": "Keep upper arms steady."
+        "note": "Triceps \u00b7 smooth elbow extension."
       },
       {
         "exercise": "Lying leg raise",
         "sets": 2,
         "reps": "10\u201315",
-        "note": "Keep lower back controlled."
+        "note": "Abs/Core \u00b7 controlled lowering."
       }
     ]
   },
@@ -1020,6 +1020,22 @@
       "reps": "12\u201320/side",
       "cue": "Rotate through the torso slowly; do not pull the neck.",
       "equipment": "Bodyweight"
+    },
+    {
+      "category": "Back",
+      "exercise": "Pull-up",
+      "sets": 3,
+      "reps": "5\u201310",
+      "cue": "Start from a controlled hang, pull chest toward the bar and lower slowly.",
+      "equipment": "Pull-up bar"
+    },
+    {
+      "category": "Back",
+      "exercise": "Close-grip chin-up",
+      "sets": 3,
+      "reps": "5\u201310",
+      "cue": "Use a close underhand grip, keep ribs controlled and pull without swinging.",
+      "equipment": "Pull-up bar"
     }
   ]
 }

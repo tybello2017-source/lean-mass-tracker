@@ -1,9 +1,10 @@
 const STORE='leanMassTrackerV1';
-const VERSION='1.6';
+const VERSION='1.7';
 const PHOTO_DB='LeanMassPhotos';
 let seed,state,selectedDate=isoToday(),mealMode='recent',currentPhotoBlob=null,calendarAnchor=isoToday(),photoTarget=null,mealPhotoMap={bySlug:{}};
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const demoMap={"Alternate dumbbell curl":["alternate-dumbbell-curl.svg","Curl one dumbbell at a time; keep elbow close to your side."],"Hammer curl":["hammer-curl.svg","Use a neutral grip and avoid swinging."],"Concentration curl":["concentration-curl.svg","Brace elbow against inner thigh and curl slowly."],"Dumbbell curl":["dumbbell-curl.svg","Keep elbows near ribs and avoid swinging."],"DB overhead triceps extension":["db-overhead-triceps-extension.svg","Keep upper arms still while extending the elbows."],"Lying dumbbell triceps extension":["lying-dumbbell-triceps-extension.svg","Keep upper arms steady; bend only at the elbows."],"Triceps kickback":["triceps-kickback.svg","Keep upper arm parallel to torso; fully extend elbow."],"Close-grip bench press":["close-grip-bench-press.svg","Use a comfortable close grip; keep elbows controlled."],"Dumbbell shoulder press":["dumbbell-shoulder-press.svg","Brace abdomen and press overhead without excessive back arch."],"Arnold press":["arnold-press.svg","Rotate smoothly through the press; do not force shoulder range."],"Dumbbell lateral raise":["dumbbell-lateral-raise.svg","Use light weight; raise to shoulder height without swinging."],"Dumbbell front raise":["dumbbell-front-raise.svg","Raise under control to about shoulder height."],"Barbell bench press":["barbell-bench-press.svg","Shoulder blades back/down, feet planted; lower under control."],"Incline dumbbell press":["incline-dumbbell-press.svg","Use a modest incline and keep shoulders back."],"Dumbbell bench fly":["dumbbell-bench-fly.svg","Keep a soft elbow bend; stop before shoulder discomfort."],"Incline dumbbell fly":["incline-dumbbell-fly.svg","Use light dumbbells and a modest incline."],"Dumbbell squeeze press":["dumbbell-squeeze-press.svg","Press dumbbells together throughout the movement."],"Dumbbell pullover":["dumbbell-pullover.svg","Keep ribs controlled and use a comfortable shoulder range."],"One-arm dumbbell row":["one-arm-dumbbell-row.svg","Support on bench, pull elbow toward hip, avoid torso twisting."],"Barbell bent-over row":["barbell-bent-over-row.svg","Hold a stable hip hinge and pull toward lower ribs."],"Reverse fly":["reverse-fly.svg","Use light weights and move from the rear shoulders."],"Dumbbell shrug":["dumbbell-shrug.svg","Lift shoulders straight up; pause briefly; do not roll."],"Goblet squat":["goblet-squat.svg","Hold a dumbbell at chest; sit hips down/back; keep heels down."],"Bulgarian split squat":["bulgarian-split-squat.svg","Rear foot on bench, lower with control, drive through front foot."],"Dumbbell reverse lunge":["dumbbell-reverse-lunge.svg","Step back and keep a stable shoulder-width stance."],"Barbell Romanian deadlift":["barbell-romanian-deadlift.svg","Soft knees, push hips back, keep bar close and spine neutral."],"Barbell/dumbbell hip thrust":["barbell-dumbbell-hip-thrust.svg","Upper back on bench; squeeze glutes at top without overextending."],"Standing calf raise":["standing-calf-raise.svg","Use full comfortable range and pause at the top."],"Plank":["plank.svg","Elbows under shoulders; squeeze abs/glutes and keep hips level."],"Lying leg raise":["lying-leg-raise.svg","Keep lower back controlled; lower legs slowly."],"Crunch":["crunch.svg","Lift shoulder blades with your abs; avoid pulling the neck."],"Mountain climber":["mountain-climber.svg","Keep shoulders over hands and hips steady."],"Bicycle crunch":["bicycle-crunch.svg","Rotate through the torso slowly; do not pull the neck."]};
+const exerciseGifMap={"Barbell bench press":"gifs/barbell-bench-press.gif","Barbell bent-over row":"gifs/barbell-bent-over-row.gif","Barbell/dumbbell hip thrust":"gifs/barbell-hip-thrusts.gif","Barbell Romanian deadlift":"gifs/barbell-romanian-deadlift.gif","Dumbbell lateral raise":"gifs/dumbbell-lateral-raise.gif","Dumbbell reverse lunge":"gifs/dumbbell-reverse-lunge.gif","Dumbbell shoulder press":"gifs/dumbbell-shoulder-press.gif","Goblet squat":"gifs/goblet-squat.gif","Hammer curl":"gifs/hammer-curl.gif","Incline dumbbell press":"gifs/incline-dumbbell-press.gif","Lying leg raise":"gifs/lying-leg-raise.gif","One-arm dumbbell row":"gifs/one-arm-dumbbell-row.gif","Lying dumbbell triceps extension":"gifs/alternating-lying-dumbbell-triceps-extension.gif","Pull-up":"gifs/pull-up.gif","Close-grip chin-up":"gifs/close-grip-chin-up.gif"};
 const exerciseImageMap={
  'Goblet squat':'goblet-squat.jpg',
  'Barbell bench press':'barbell-bench-press.jpg',
@@ -58,8 +59,10 @@ function mealVisual(m, cls='meal-thumb'){
 }
 const verifiedExercisePhotos={};
 function exerciseVisual(name, cls='exercise-photo'){
+ const gif=exerciseGifMap[name];
+ if(gif)return `<div class="${cls} exercise-v17-media"><img src="demos/${gif}" alt="${esc(name)} animated exercise demo" loading="lazy"></div>`;
  const d=demoMap[name]?.[0];
- return `<div class="${cls} exercise-v16-card">${d?`<img src="demos/${d}" alt="${esc(name)} exercise guide">`:''}</div>`;
+ return `<div class="${cls} exercise-v17-media">${d?`<img src="demos/${d}" alt="${esc(name)} exercise guide" loading="lazy">`:''}</div>`;
 }
 function isoToday(){const d=new Date();return iso(d)}
 function iso(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
@@ -73,18 +76,71 @@ function targetForDate(date){const start=dateObj(state.startDate),d=dateObj(date
 function blankLog(){return{meals:[],weight:null,waist:null,chest:null,arm:null,thigh:null,sleep:null,energy:'',training:'No',workout:'Rest',workoutLog:{}}}
 function logFor(date){if(!state.logs[date])state.logs[date]=blankLog();const l=state.logs[date];for(const [k,v] of Object.entries(blankLog()))if(l[k]===undefined)l[k]=v;return l}
 function totals(log){return(log.meals||[]).reduce((a,m)=>({kcal:a.kcal+(+m.kcal||0),protein:a.protein+(+m.protein||0)}),{kcal:0,protein:0})}
+
+function exerciseCategory(name=''){
+ const found=(state?.exerciseLibrary||seed?.exerciseLibrary||[]).find(x=>x.exercise===name);
+ if(found?.category)return found.category;
+ const n=name.toLowerCase();
+ if(/bench press|incline.*press|fly|squeeze press|pullover/.test(n))return'Chest';
+ if(/row|pull-up|chin-up|reverse fly|shrug/.test(n))return'Back';
+ if(/shoulder|lateral raise|front raise|arnold/.test(n))return'Shoulders';
+ if(/curl/.test(n))return'Biceps';
+ if(/triceps|close-grip bench/.test(n))return'Triceps';
+ if(/squat|lunge|deadlift|hip thrust|calf/.test(n))return'Legs';
+ if(/plank|leg raise|crunch|mountain|bicycle/.test(n))return'Abs/Core';
+ return'Other';
+}
+function exerciseNameForLog(key,v){
+ if(v?.exerciseName)return v.exerciseName;
+ const m=key.match(/^([ABC])-(\\d+)$/);return m?state.workouts?.[m[1]]?.[+m[2]]?.exercise||'Exercise':'Exercise';
+}
+function workoutStats(daysBack=7){
+ const end=dateObj(selectedDate),start=new Date(end.getTime()-(daysBack-1)*86400000);
+ const groups={'Biceps':{sets:0,volume:0},'Triceps':{sets:0,volume:0},'Shoulders':{sets:0,volume:0},'Chest':{sets:0,volume:0},'Back':{sets:0,volume:0},'Legs':{sets:0,volume:0},'Abs/Core':{sets:0,volume:0}};
+ for(const [d,l] of Object.entries(state.logs||{})){
+   const dt=dateObj(d);if(dt<start||dt>end)continue;
+   for(const [key,v] of Object.entries(l.workoutLog||{})){
+     const name=exerciseNameForLog(key,v),cat=v.category||exerciseCategory(name);if(!groups[cat])continue;
+     for(const st of (v.sets||[])){if(st.done){groups[cat].sets++;groups[cat].volume+=(+st.load||0)*(+st.reps||0)}}
+   }
+ }
+ const totalSets=Object.values(groups).reduce((a,x)=>a+x.sets,0),totalVolume=Object.values(groups).reduce((a,x)=>a+x.volume,0);
+ return{groups,totalSets,totalVolume};
+}
+function weeklyNutritionAverages(){
+ const base=dateObj(state.startDate),weeks=[];
+ for(let w=0;w<12;w++){
+   let kcal=0,protein=0,n=0;
+   for(let i=0;i<7;i++){const d=iso(new Date(base.getTime()+(w*7+i)*86400000)),l=state.logs[d];if(l?.meals?.length){const t=totals(l);kcal+=t.kcal;protein+=t.protein;n++}}
+   weeks.push({week:w+1,kcal:n?kcal/n:null,protein:n?protein/n:null,days:n,target:targetForDate(iso(new Date(base.getTime()+w*7*86400000))).kcal});
+ }
+ return weeks;
+}
+
 function pct(v,t){return Math.max(0,Math.min(100,Math.round((v/t)*100)||0))}
 function allMeals(){return[...(state.meals||[]),...(state.customMeals||[])]}
 function latestValue(field){const es=Object.entries(state.logs).filter(([,x])=>x[field]!=null).sort(([a],[b])=>b.localeCompare(a));return es.length?+es[0][1][field]:null}
 function migrate(){
  const prior=state.version||'1.0';
  state.customMeals=state.customMeals||[];state.mealPhotoOverrides=state.mealPhotoOverrides||{};state.favorites=state.favorites||[];state.recentMeals=state.recentMeals||[];state.reminders=state.reminders||defaultReminders();state.reminderFired=state.reminderFired||{};state.settings=state.settings||{...seed.setup};
+ // Preserve exercise identity in old indexed workout logs before changing the programme.
+ Object.entries(state.logs||{}).forEach(([d,l])=>{
+   l.workoutLog=l.workoutLog||{};
+   Object.entries(l.workoutLog).forEach(([key,v])=>{
+     if(!v)return;
+     if(!v.exerciseName){
+       const mm=key.match(/^([ABC])-(\d+)$/);
+       if(mm){const old=state.workouts?.[mm[1]]?.[+mm[2]];if(old?.exercise)v.exerciseName=old.exercise}
+     }
+     if(v.exerciseName&&!v.category)v.category=exerciseCategory(v.exerciseName);
+   });
+ });
  state.exerciseLibrary=seed.exerciseLibrary||[];
- if(prior!=='1.6'){
+ if(prior!=='1.7'){
    const added={};
    for(const k of ['A','B','C']) added[k]=(state.workouts?.[k]||[]).filter(x=>x.userAdded);
    state.workouts=JSON.parse(JSON.stringify(seed.workouts));
-   for(const k of ['A','B','C']) state.workouts[k].push(...added[k]);
+   for(const k of ['A','B','C']) for(const x of added[k])if(!state.workouts[k].some(y=>y.exercise===x.exercise))state.workouts[k].push(x);
  }
  state.version=VERSION;
  Object.values(state.logs||{}).forEach(l=>{
@@ -227,13 +283,13 @@ function progressionHint(k,x,i,date){
 }
 function renderWorkouts(){
  const buttons=['A','B','C'].map(k=>`<button class="chip ${(state.uiWorkout||'A')===k?'active':''}" onclick="state.uiWorkout='${k}';renderWorkouts()">Workout ${k}</button>`).join(''),k=state.uiWorkout||'A',flex=seed.flex[k],ex=state.workouts[k],log=logFor(selectedDate);
- $('#view-workouts').innerHTML=`<div class="section-title"><div><span class="muted">Expanded home programme · V1.6</span><h2>Workout ${k}</h2></div><span class="pill">${log.training==='Yes'&&log.workout===k?'Completed':'3 / week'}</span></div>
+ $('#view-workouts').innerHTML=`<div class="section-title"><div><span class="muted">GIF-guided home programme · V1.7</span><h2>Workout ${k}</h2></div><span class="pill">${log.training==='Yes'&&log.workout===k?'Completed':'3 / week'}</span></div>
  <div class="notice success"><b>Flexible:</b> preferred ${flex.preferred}; alternative ${flex.alternative}. Friday/Sunday remain make-up slots, not extra compulsory sessions.</div>
  <div class="tabbar">${buttons}</div>
  <div class="workout-library-strip"><div><b>Exercise Library</b><span>${(state.exerciseLibrary||[]).length} home-friendly exercises</span></div><button class="primary compact" onclick="openExerciseLibrary('${k}')">＋ Add exercise</button></div>
  <div class="muscle-chips">${['Chest','Back','Shoulders','Biceps','Triceps','Legs','Abs/Core'].map(c=>`<span>${c}</span>`).join('')}</div>
  <div class="card"><div class="row between"><div><span class="muted">${fmtDate(selectedDate)}</span><h3>Workout ${k}</h3></div><button class="ghost" onclick="selectedDate=isoToday();renderAll()">Today</button></div>${ex.map((x,i)=>exerciseHtml(k,x,i,log)).join('')}<button class="primary full" onclick="completeWorkout('${k}')">Mark Workout ${k} complete</button></div>
- <div class="notice"><b>V1.6:</b> expanded exercise choices inspired by the movements you already track on your phone. Pull-ups and dips are deliberately excluded because they require equipment you do not currently have. Exercise artwork in Lean Mass Tracker is original and not copied from the other app.</div>`;
+ <div class="notice"><b>V1.6:</b> expanded exercise choices inspired by the movements you already track on your phone. Pull-ups and close-grip chin-ups are now included for your incoming pull-up bar. Dips remain excluded. Where you supplied an exact GIF, V1.7 uses it as the exercise demo.</div>`;
 }
 function exerciseHtml(k,x,i,log){
  const key=`${k}-${i}`,v=log.workoutLog?.[key]||{},sets=Array.from({length:+x.sets||3},(_,si)=>v.sets?.[si]||{}),hint=progressionHint(k,x,i,selectedDate);
@@ -250,7 +306,7 @@ function renderExerciseLibraryDialog(){
  const k=state.libraryWorkout||state.uiWorkout||'A',cat=state.libraryCategory||'All',cats=['All','Chest','Back','Shoulders','Biceps','Triceps','Legs','Abs/Core'];
  const items=(state.exerciseLibrary||[]).filter(x=>cat==='All'||x.category===cat);
  $('#exerciseLibraryBody').innerHTML=`<div class="dialog-head"><button class="text-btn" onclick="$('#exerciseLibraryDialog').close()">Close</button><h3>Add to Workout ${k}</h3><span></span></div>
- <p class="muted">Choose an exercise that works with your current dumbbells, barbell and bench. Pull-ups and dips are excluded.</p>
+ <p class="muted">Choose an exercise for your dumbbells, barbell, bench or pull-up bar. Dips remain excluded.</p>
  <div class="library-categories">${cats.map(c=>`<button class="${c===cat?'active':''}" onclick="state.libraryCategory='${c}';renderExerciseLibraryDialog()">${c}</button>`).join('')}</div>
  <div class="exercise-library-grid">${items.map(x=>`<article class="library-card">${exerciseVisual(x.exercise,'library-exercise-img')}<div class="library-card-body"><span class="library-cat">${esc(x.category)}</span><h4>${esc(x.exercise)}</h4><div class="muted">${esc(x.equipment)} · ${x.sets} sets · ${esc(x.reps)}</div><p>${esc(x.cue)}</p><button class="primary compact full" onclick="addWorkoutExercise('${k}','${encodeURIComponent(x.exercise)}')">Add to Workout ${k}</button></div></article>`).join('')}</div>`;
 }
@@ -269,19 +325,52 @@ function copyPrevious(k,i){const prev=previousExerciseSets(k,i,selectedDate);if(
 function openDemo(encoded){
  const name=decodeURIComponent(encoded),d=demoMap[name]||['','Use controlled form.'];
  $('#demoBody').innerHTML=`<div class="dialog-head"><button class="text-btn" onclick="$('#demoDialog').close()">Close</button><h3>${esc(name)}</h3><span></span></div>
- <div class="demo-hero">${exerciseVisual(name,'exercise-demo-photo')}<span class="demo-play">▶</span></div>
+ <div class="demo-hero">${exerciseVisual(name,'exercise-demo-photo')}${exerciseGifMap[name]?'<span class="gif-badge">ANIMATED DEMO</span>':'<span class="demo-play">▶</span>'}</div>
  <div class="demo-cue"><b>Key cue</b><div class="muted">${esc(d[1])}</div></div>
  <div class="notice success"><b>Tempo:</b> controlled lowering, smooth return, steady breathing. Start with a manageable load and stop if technique breaks down.</div>`;
  $('#demoDialog').showModal()
 }
-function saveExerciseSets(key,count){const l=logFor(selectedDate);l.workoutLog=l.workoutLog||{};const sets=[];for(let si=0;si<count;si++)sets.push({load:numOrNull($(`#load-${key}-${si}`).value),reps:numOrNull($(`#reps-${key}-${si}`).value),rir:numOrNull($(`#rir-${key}-${si}`).value),done:$(`#done-${key}-${si}`).checked});l.workoutLog[key]={sets};save();toast('Exercise sets saved')}
+function saveExerciseSets(key,count){const l=logFor(selectedDate);l.workoutLog=l.workoutLog||{};const sets=[];for(let si=0;si<count;si++)sets.push({load:numOrNull($(`#load-${key}-${si}`).value),reps:numOrNull($(`#reps-${key}-${si}`).value),rir:numOrNull($(`#rir-${key}-${si}`).value),done:$(`#done-${key}-${si}`).checked});const mm=key.match(/^([ABC])-(\d+)$/),name=mm?state.workouts?.[mm[1]]?.[+mm[2]]?.exercise:null;
+ l.workoutLog[key]={sets,exerciseName:name||l.workoutLog[key]?.exerciseName||'Exercise',category:exerciseCategory(name||l.workoutLog[key]?.exerciseName||'')};save();toast('Exercise sets saved')}
 function completeWorkout(k){const l=logFor(selectedDate);l.training='Yes';l.workout=k;save();renderAll();toast(`Workout ${k} completed`)}
-function renderProgress(){const entries=Object.entries(state.logs).sort(([a],[b])=>a.localeCompare(b)),weigh=entries.filter(([,x])=>x.weight!=null),latest=latestValue('weight'),goal=state.settings.goalWeight,start=state.settings.startWeight,week=weekDates(selectedDate);let kcal=0,prot=0,n=0;week.forEach(d=>{const l=state.logs[d];if(l?.meals?.length){const t=totals(l);kcal+=t.kcal;prot+=t.protein;n++}});$('#view-progress').innerHTML=`<div class="section-title"><div><span class="muted">12-week trajectory</span><h2>Progress</h2></div></div><div class="stat3"><div class="kpi"><span class="muted">Latest</span><div class="big">${latest??'—'}</div><div class="muted">kg</div></div><div class="kpi"><span class="muted">Goal</span><div class="big">${goal}</div><div class="muted">kg</div></div><div class="kpi"><span class="muted">Logged</span><div class="big">${weigh.length}</div><div class="muted">weights</div></div></div><div class="card"><h3>Weight trend</h3><div class="canvas-wrap"><canvas id="weightChart" width="760" height="320"></canvas></div><div class="muted">Target path: ${start} → ${goal} kg across 12 weeks.</div></div><div class="card"><h3>Body measurements</h3><div class="body-metrics">${['waist','chest','arm','thigh'].map(f=>metricCard(f)).join('')}</div><div class="canvas-wrap"><canvas id="bodyChart" width="760" height="320"></canvas></div></div><div class="card"><h3>This week</h3><div class="weekly-summary"><div><span class="muted">Avg calories</span><b>${n?Math.round(kcal/n):'—'}</b></div><div><span class="muted">Avg protein</span><b>${n?Math.round(prot/n)+'g':'—'}</b></div><div><span class="muted">Workouts</span><b>${week.filter(d=>state.logs[d]?.training==='Yes').length}/3</b></div></div></div><div class="card"><h3>Meal photos</h3><div id="photoGallery" class="photo-gallery"><div class="empty">Loading photos…</div></div></div><div class="card"><h3>Recent check-ins</h3>${entries.slice(-12).reverse().map(([d,x])=>`<div class="history-row row between"><div><strong>${fmtDate(d)}</strong><div class="muted">${x.energy||'No energy rating'} · ${x.sleep??'—'} h sleep</div></div><div class="right"><b>${x.weight??'—'} kg</b><div class="muted">${Math.round(totals(x).kcal)} kcal</div></div></div>`).join('')||'<div class="empty">No logs yet</div>'}</div>`;requestAnimationFrame(()=>{drawWeightChart();drawBodyChart();renderPhotoGallery()})}
+function renderProgress(){
+ const entries=Object.entries(state.logs).sort(([a],[b])=>a.localeCompare(b)),weigh=entries.filter(([,x])=>x.weight!=null),latest=latestValue('weight'),goal=state.settings.goalWeight,start=state.settings.startWeight,week=weekDates(selectedDate);
+ let kcal=0,prot=0,n=0;week.forEach(d=>{const l=state.logs[d];if(l?.meals?.length){const t=totals(l);kcal+=t.kcal;prot+=t.protein;n++}});
+ state.progressRange=state.progressRange||7;const ws=workoutStats(state.progressRange),maxSets=Math.max(1,...Object.values(ws.groups).map(x=>x.sets));
+ $('#view-progress').innerHTML=`<div class="section-title"><div><span class="muted">12-week trajectory · V1.7</span><h2>Progress</h2></div></div>
+ <div class="stat3"><div class="kpi"><span class="muted">Latest</span><div class="big">${latest??'—'}</div><div class="muted">kg</div></div><div class="kpi"><span class="muted">Goal</span><div class="big">${goal}</div><div class="muted">kg</div></div><div class="kpi"><span class="muted">Logged</span><div class="big">${weigh.length}</div><div class="muted">weights</div></div></div>
+ <div class="card"><h3>Weight trend</h3><div class="canvas-wrap"><canvas id="weightChart" width="760" height="320"></canvas></div><div class="muted">Target path: ${start} → ${goal} kg across 12 weeks.</div></div>
+ <div class="card"><div class="row between"><div><h3>Training balance</h3><div class="muted">Completed sets by muscle group</div></div><div class="range-tabs">${[[7,'1 week'],[14,'2 weeks'],[28,'4 weeks']].map(([d,l])=>`<button class="${state.progressRange===d?'active':''}" onclick="state.progressRange=${d};renderProgress()">${l}</button>`).join('')}</div></div>
+ <div class="muscle-progress">${Object.entries(ws.groups).map(([g,x])=>{const pc=ws.totalSets?Math.round(x.sets/ws.totalSets*100):0;return`<div class="muscle-progress-row"><span>${g.replace('/Core','')}</span><b>${pc}%</b><div class="muscle-track"><i style="width:${Math.max(pc,x.sets?4:0)}%"></i></div></div>`}).join('')}</div>
+ <div class="volume-summary"><div><span class="muted">Completed sets</span><b>${ws.totalSets}</b></div><div><span class="muted">Logged training volume</span><b>${(ws.totalVolume/1000).toFixed(1)} t</b></div></div>
+ <div class="volume-grid">${Object.entries(ws.groups).filter(([,x])=>x.volume>0).map(([g,x])=>`<div><span>${g}</span><b>${(x.volume/1000).toFixed(2)} t</b></div>`).join('')||'<div class="muted">Log load + reps + Done to build your volume chart.</div>'}</div>
+ <p class="footer-note">Training volume = logged load × reps for completed sets. Use it mainly to compare your own trend over time.</p></div>
+ <div class="card"><div class="row between"><div><h3>Weekly calorie intake</h3><div class="muted">Average calories on days with meals logged</div></div><span class="pill">${n?Math.round(kcal/n)+' kcal':'No data'}</span></div><div class="canvas-wrap nutrition-chart-wrap"><canvas id="calorieChart" width="760" height="340"></canvas></div><div class="chart-legend"><span><i class="legend-blue"></i>Weekly average</span><span><i class="legend-dash"></i>Calorie target</span></div></div>
+ <div class="card"><h3>Body measurements</h3><div class="body-metrics">${['waist','chest','arm','thigh'].map(f=>metricCard(f)).join('')}</div><div class="canvas-wrap"><canvas id="bodyChart" width="760" height="320"></canvas></div></div>
+ <div class="card"><h3>This week</h3><div class="weekly-summary"><div><span class="muted">Avg calories</span><b>${n?Math.round(kcal/n):'—'}</b></div><div><span class="muted">Avg protein</span><b>${n?Math.round(prot/n)+'g':'—'}</b></div><div><span class="muted">Workouts</span><b>${week.filter(d=>state.logs[d]?.training==='Yes').length}/3</b></div></div></div>
+ <div class="card"><h3>Meal photos</h3><div id="photoGallery" class="photo-gallery"><div class="empty">Loading photos…</div></div></div>
+ <div class="card"><h3>Recent check-ins</h3>${entries.slice(-12).reverse().map(([d,x])=>`<div class="history-row row between"><div><strong>${fmtDate(d)}</strong><div class="muted">${x.energy||'No energy rating'} · ${x.sleep??'—'} h sleep</div></div><div class="right"><b>${x.weight??'—'} kg</b><div class="muted">${Math.round(totals(x).kcal)} kcal</div></div></div>`).join('')||'<div class="empty">No logs yet</div>'}</div>`;
+ requestAnimationFrame(()=>{drawWeightChart();drawCalorieChart();drawBodyChart();renderPhotoGallery()})
+}
 function metricCard(f){const label={waist:'Waist',chest:'Chest',arm:'Upper arm',thigh:'Thigh'}[f],v=latestValue(f);return`<div class="body-metric"><span class="muted">${label}</span><b>${v==null?'—':v.toFixed(1)}</b><span class="muted">cm</span></div>`}
 function drawWeightChart(){const c=$('#weightChart');if(!c)return;const ctx=c.getContext('2d'),W=c.width,H=c.height,p=44,startD=dateObj(state.startDate),end=new Date(startD.getTime()+83*86400000),weights=Object.entries(state.logs).filter(([,x])=>x.weight!=null).sort(([a],[b])=>a.localeCompare(b)),min=Math.min(61,state.settings.startWeight-2,...weights.map(x=>x[1].weight)),max=Math.max(70,state.settings.goalWeight+2,...weights.map(x=>x[1].weight)),x=d=>p+((dateObj(d)-startD)/(end-startD))*(W-2*p),y=v=>H-p-((v-min)/(max-min))*(H-2*p);ctx.clearRect(0,0,W,H);ctx.font='12px -apple-system';for(let v=Math.ceil(min);v<=max;v++){ctx.strokeStyle='#e3e8ee';ctx.beginPath();ctx.moveTo(p,y(v));ctx.lineTo(W-p,y(v));ctx.stroke();ctx.fillStyle='#7b8790';ctx.fillText(v,10,y(v)+4)}ctx.strokeStyle='#aab7c2';ctx.setLineDash([7,7]);ctx.beginPath();ctx.moveTo(p,y(state.settings.startWeight));ctx.lineTo(W-p,y(state.settings.goalWeight));ctx.stroke();ctx.setLineDash([]);if(weights.length){ctx.strokeStyle='#0a64d8';ctx.lineWidth=4;ctx.beginPath();weights.forEach(([d,l],i)=>i?ctx.lineTo(x(d),y(l.weight)):ctx.moveTo(x(d),y(l.weight)));ctx.stroke();weights.forEach(([d,l])=>{ctx.fillStyle='#103d61';ctx.beginPath();ctx.arc(x(d),y(l.weight),5,0,Math.PI*2);ctx.fill()})}}
+
+function drawCalorieChart(){
+ const c=$('#calorieChart');if(!c)return;const ctx=c.getContext('2d'),W=c.width,H=c.height,pL=54,pR=24,pT=28,pB=46,data=weeklyNutritionAverages(),vals=data.flatMap(x=>[x.kcal,x.target]).filter(v=>v!=null);
+ const max=Math.max(3000,...vals)+150,min=Math.max(0,Math.min(1800,...vals)-150),x=i=>pL+i*(W-pL-pR)/11,y=v=>H-pB-(v-min)/(max-min)*(H-pT-pB);
+ ctx.clearRect(0,0,W,H);ctx.font='12px -apple-system';
+ for(let v=Math.ceil(min/500)*500;v<=max;v+=500){ctx.strokeStyle='#e7edf3';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(pL,y(v));ctx.lineTo(W-pR,y(v));ctx.stroke();ctx.fillStyle='#7b8790';ctx.fillText(v,8,y(v)+4)}
+ // target
+ ctx.strokeStyle='#a5b0bb';ctx.setLineDash([8,6]);ctx.lineWidth=2;ctx.beginPath();data.forEach((d,i)=>i?ctx.lineTo(x(i),y(d.target)):ctx.moveTo(x(i),y(d.target)));ctx.stroke();ctx.setLineDash([]);
+ // average
+ const pts=data.map((d,i)=>d.kcal==null?null:{i,v:d.kcal}).filter(Boolean);
+ if(pts.length){ctx.strokeStyle='#176fd1';ctx.lineWidth=4;ctx.beginPath();pts.forEach((pt,j)=>j?ctx.lineTo(x(pt.i),y(pt.v)):ctx.moveTo(x(pt.i),y(pt.v)));ctx.stroke();pts.forEach(pt=>{ctx.fillStyle='#176fd1';ctx.beginPath();ctx.arc(x(pt.i),y(pt.v),6,0,Math.PI*2);ctx.fill()})}
+ data.forEach((d,i)=>{ctx.fillStyle='#71808d';ctx.font='11px -apple-system';ctx.fillText('W'+(i+1),x(i)-8,H-18)});
+}
+
 function drawBodyChart(){const c=$('#bodyChart');if(!c)return;const ctx=c.getContext('2d'),W=c.width,H=c.height,p=44,fields=['waist','chest','arm','thigh'],colors=['#0a64d8','#35ad70','#e58a23','#7959c7'],entries=Object.entries(state.logs).sort(([a],[b])=>a.localeCompare(b)),vals=[];entries.forEach(([,l])=>fields.forEach(f=>{if(l[f]!=null)vals.push(+l[f])}));ctx.clearRect(0,0,W,H);if(!vals.length){ctx.fillStyle='#7b8790';ctx.font='16px -apple-system';ctx.fillText('Add waist, chest, arm or thigh measurements to see trends.',30,80);return}const min=Math.max(0,Math.min(...vals)-4),max=Math.max(...vals)+4,start=dateObj(state.startDate),end=new Date(start.getTime()+83*86400000),x=d=>p+((dateObj(d)-start)/(end-start))*(W-2*p),y=v=>H-p-((v-min)/(max-min))*(H-2*p);fields.forEach((f,fi)=>{const pts=entries.filter(([,l])=>l[f]!=null);if(!pts.length)return;ctx.strokeStyle=colors[fi];ctx.lineWidth=3;ctx.beginPath();pts.forEach(([d,l],i)=>i?ctx.lineTo(x(d),y(l[f])):ctx.moveTo(x(d),y(l[f])));ctx.stroke();ctx.fillStyle=colors[fi];ctx.font='12px -apple-system';ctx.fillText({waist:'Waist',chest:'Chest',arm:'Arm',thigh:'Thigh'}[f],50+fi*115,22)})}
 
-function renderSettings(){const s=state.settings;$('#view-settings').innerHTML=`<div class="section-title"><div><span class="muted">V1.3</span><h2>More</h2></div></div><div class="card"><h3>Targets</h3><div class="two-col"><label>Starting weight<input id="setStart" type="number" step="0.1" value="${s.startWeight}"></label><label>Goal weight<input id="setGoal" type="number" step="0.1" value="${s.goalWeight}"></label><label>Protein target<input id="setProtein" type="number" value="${s.proteinTarget}"></label><label>Programme start<input id="setDate" type="date" value="${state.startDate}"></label></div><button class="primary" onclick="saveSettings()">Save targets</button></div><div class="card"><div class="row between"><h3>Reminders</h3><button class="ghost" onclick="openReminderDialog()">Configure</button></div><p class="muted">Meal, Serious Mass, workout and weigh-in reminders. Notifications require permission.</p><button class="secondary" onclick="requestNotifications()">Enable notifications</button></div><div class="card"><h3>Serious Mass</h3><div class="metricline"><span>1 heaped scoop</span><b>631 kcal · 25 g</b></div><div class="muted">168 g powder; approximately 124 g carbohydrate and 1.5 g creatine.</div></div><div class="card"><h3>Backup & restore</h3><p class="muted">Export includes logs, settings, custom foods and meal photos. Keep a periodic backup outside Safari.</p><div class="actions"><button class="primary" onclick="exportBackup()">Export backup</button><label class="secondary" style="text-align:center;cursor:pointer">Import backup<input type="file" accept="application/json" hidden onchange="importBackup(this.files[0])"></label></div></div><div class="card"><h3>About V1.6</h3><p class="muted">Photo-rich meals plus an expanded home workout library with muscle-group filters, add/remove exercise options, original exercise illustrations, per-set load/reps/RIR logging, and progressive-overload tracking.</p><p class="footer-note">Reminder limitation: GitHub Pages has no notification server. V1.6 can notify while the app is active/recently opened and checks overdue reminders when reopened, but reliable background push while fully closed requires a later server-backed push service.</p></div><div class="card"><button class="secondary danger" onclick="resetApp()">Reset app data</button></div>`}
+function renderSettings(){const s=state.settings;$('#view-settings').innerHTML=`<div class="section-title"><div><span class="muted">V1.7</span><h2>More</h2></div></div><div class="card"><h3>Targets</h3><div class="two-col"><label>Starting weight<input id="setStart" type="number" step="0.1" value="${s.startWeight}"></label><label>Goal weight<input id="setGoal" type="number" step="0.1" value="${s.goalWeight}"></label><label>Protein target<input id="setProtein" type="number" value="${s.proteinTarget}"></label><label>Programme start<input id="setDate" type="date" value="${state.startDate}"></label></div><button class="primary" onclick="saveSettings()">Save targets</button></div><div class="card"><div class="row between"><h3>Reminders</h3><button class="ghost" onclick="openReminderDialog()">Configure</button></div><p class="muted">Meal, Serious Mass, workout and weigh-in reminders. Notifications require permission.</p><button class="secondary" onclick="requestNotifications()">Enable notifications</button></div><div class="card"><h3>Serious Mass</h3><div class="metricline"><span>1 heaped scoop</span><b>631 kcal · 25 g</b></div><div class="muted">168 g powder; approximately 124 g carbohydrate and 1.5 g creatine.</div></div><div class="card"><h3>Backup & restore</h3><p class="muted">Export includes logs, settings, custom foods and meal photos. Keep a periodic backup outside Safari.</p><div class="actions"><button class="primary" onclick="exportBackup()">Export backup</button><label class="secondary" style="text-align:center;cursor:pointer">Import backup<input type="file" accept="application/json" hidden onchange="importBackup(this.files[0])"></label></div></div><div class="card"><h3>About V1.7</h3><p class="muted">Photo-rich meals, exact supplied workout GIF demos, pull-up/chin-up support, balanced A/B/C programming, muscle-group training balance, logged lifting-volume summaries and weekly calorie-average charts.</p><p class="footer-note">Reminder limitation: GitHub Pages has no notification server. V1.7 can notify while the app is active/recently opened and checks overdue reminders when reopened, but reliable background push while fully closed requires a later server-backed push service.</p></div><div class="card"><button class="secondary danger" onclick="resetApp()">Reset app data</button></div>`}
 function saveSettings(){state.settings.startWeight=+$('#setStart').value;state.settings.goalWeight=+$('#setGoal').value;state.settings.proteinTarget=+$('#setProtein').value;state.startDate=$('#setDate').value;save();renderAll();toast('Targets saved')}
 
 function setupReminders(){}
@@ -304,9 +393,9 @@ async function openMealPhoto(date,index){const m=state.logs[date]?.meals?.[index
 function compressImage(file){return new Promise((res,rej)=>{const im=new Image(),u=URL.createObjectURL(file);im.onload=()=>{const max=1200,s=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext('2d').drawImage(im,0,0,c.width,c.height);c.toBlob(b=>{URL.revokeObjectURL(u);b?res(b):rej(new Error('Photo compression failed'))},'image/jpeg',.72)};im.onerror=rej;im.src=u})}
 function blobToDataURL(blob){return new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(blob)})}
 function dataURLToBlob(s){const [h,b64]=s.split(','),mime=h.match(/:(.*?);/)[1],bin=atob(b64),arr=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)arr[i]=bin.charCodeAt(i);return new Blob([arr],{type:mime})}
-async function exportBackup(){const photos=await allPhotoRecords(),encoded={};for(const[id,b]of Object.entries(photos))encoded[id]=await blobToDataURL(b);const pack={app:'Lean Mass Tracker',version:VERSION,exportedAt:new Date().toISOString(),state,photos:encoded},blob=new Blob([JSON.stringify(pack)],{type:'application/json'}),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=`lean-mass-v1-6-backup-${isoToday()}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);toast('Backup exported')}
+async function exportBackup(){const photos=await allPhotoRecords(),encoded={};for(const[id,b]of Object.entries(photos))encoded[id]=await blobToDataURL(b);const pack={app:'Lean Mass Tracker',version:VERSION,exportedAt:new Date().toISOString(),state,photos:encoded},blob=new Blob([JSON.stringify(pack)],{type:'application/json'}),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=`lean-mass-v1-7-backup-${isoToday()}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);toast('Backup exported')}
 function importBackup(file){if(!file)return;const r=new FileReader();r.onload=async()=>{try{const pack=JSON.parse(r.result);state=pack.state||pack;migrate();if(pack.photos)for(const[id,data]of Object.entries(pack.photos))await putPhoto(id,dataURLToBlob(data));save();renderAll();toast('Backup restored')}catch(e){alert('That backup could not be restored.')}};r.readAsText(file)}
 function resetApp(){if(confirm('Reset all app data back to the starter tracker?')){localStorage.removeItem(STORE);indexedDB.deleteDatabase(PHOTO_DB);location.reload()}}
 
-window.openMeal=openMeal;window.deleteMeal=deleteMeal;window.saveCheckin=saveCheckin;window.quickMass=quickMass;window.showView=showView;window.shiftWeek=shiftWeek;window.renderMeals=renderMeals;window.mealLibraryMode=mealLibraryMode;window.toggleFavoriteName=toggleFavoriteName;window.addCustomMeal=addCustomMeal;window.renderWorkouts=renderWorkouts;window.openExerciseLibrary=openExerciseLibrary;window.renderExerciseLibraryDialog=renderExerciseLibraryDialog;window.addWorkoutExercise=addWorkoutExercise;window.removeWorkoutExercise=removeWorkoutExercise;window.openDemo=openDemo;window.saveExerciseSets=saveExerciseSets;window.copyPrevious=copyPrevious;window.completeWorkout=completeWorkout;window.saveSettings=saveSettings;window.openReminderDialog=openReminderDialog;window.updateReminder=updateReminder;window.requestNotifications=requestNotifications;window.testNotification=testNotification;window.openMealPhoto=openMealPhoto;window.exportBackup=exportBackup;window.importBackup=importBackup;window.resetApp=resetApp;
+window.openMeal=openMeal;window.deleteMeal=deleteMeal;window.saveCheckin=saveCheckin;window.quickMass=quickMass;window.showView=showView;window.shiftWeek=shiftWeek;window.renderMeals=renderMeals;window.mealLibraryMode=mealLibraryMode;window.toggleFavoriteName=toggleFavoriteName;window.addCustomMeal=addCustomMeal;window.renderWorkouts=renderWorkouts;window.renderProgress=renderProgress;window.openExerciseLibrary=openExerciseLibrary;window.renderExerciseLibraryDialog=renderExerciseLibraryDialog;window.addWorkoutExercise=addWorkoutExercise;window.removeWorkoutExercise=removeWorkoutExercise;window.openDemo=openDemo;window.saveExerciseSets=saveExerciseSets;window.copyPrevious=copyPrevious;window.completeWorkout=completeWorkout;window.saveSettings=saveSettings;window.openReminderDialog=openReminderDialog;window.updateReminder=updateReminder;window.requestNotifications=requestNotifications;window.testNotification=testNotification;window.openMealPhoto=openMealPhoto;window.exportBackup=exportBackup;window.importBackup=importBackup;window.resetApp=resetApp;
 boot();
