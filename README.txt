@@ -47,3 +47,9 @@ V2.2 HOME EXERCISE LIBRARY
 - Added original lightweight animated GIF demos for all 27 new exercises.
 - Existing user storage keys remain unchanged: leanMassTrackerV1 and LeanMassPhotos.
 - Historical logs, meals, meal photos, workouts, check-ins and measurements are preserved in-place.
+
+
+V2.2.3 EMBEDDED GIF FIX
+- All newly added V2.2 exercise GIFs, including Triceps dips on floor, are embedded directly in app.js.
+- This removes dependency on /demos/v22 file paths and GitHub folder upload/case issues.
+- Existing storage keys remain unchanged: leanMassTrackerV1 and LeanMassPhotos.
