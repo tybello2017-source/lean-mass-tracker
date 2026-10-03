@@ -39,3 +39,11 @@ GIF DISPLAY FIX 1:
 - Newly supplied workout GIFs are embedded directly in app.js, preventing GitHub Pages path/upload failures.
 - User data storage remains unchanged: leanMassTrackerV1 + LeanMassPhotos.
 - Service worker cache bumped so iOS fetches this corrected build.
+
+V2.2 HOME EXERCISE LIBRARY
+- Expanded exercise library from 35 to 62 exercises.
+- Added forearm exercises and more dumbbell, barbell, bench, pull-up-bar and bodyweight options.
+- Added Forearms and Full Body filters/categories.
+- Added original lightweight animated GIF demos for all 27 new exercises.
+- Existing user storage keys remain unchanged: leanMassTrackerV1 and LeanMassPhotos.
+- Historical logs, meals, meal photos, workouts, check-ins and measurements are preserved in-place.

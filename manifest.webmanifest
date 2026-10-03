@@ -1,13 +1,13 @@
 {
-  "name": "Lean Mass Tracker V2.1",
-  "short_name": "LeanMass",
+  "name": "Lean Mass Tracker",
+  "short_name": "Lean Mass",
   "id": "./",
   "start_url": "./?source=pwa",
   "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
-  "description": "Lean-mass, nutrition, hydration, sleep and editable workout tracker with connected progress analytics.",
+  "description": "Lean Mass Tracker V2.2 \u2014 meals, workouts, water, sleep and progress.",
   "icons": [
     {
       "src": "icons/icon-192.png",

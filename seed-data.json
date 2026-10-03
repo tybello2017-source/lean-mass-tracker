@@ -190,7 +190,7 @@
       "name": "Moi moi - large office portion / 2 pieces",
       "kcal": 500,
       "protein": 22,
-      "notes": "Estimate from actual S\u00f4 Caf\u00e9 serving photographed 14-Aug-2026; likely range ~450\u2013550 kcal and ~20\u201325 g protein."
+      "notes": "Estimate from actual Sô Café serving photographed 14-Aug-2026; likely range ~450–550 kcal and ~20–25 g protein."
     },
     {
       "name": "Yam + egg sauce",
@@ -466,7 +466,7 @@
       "name": "Spaghetti + tomato stew + 2 pieces meat - large plate",
       "kcal": 1200,
       "protein": 55,
-      "notes": "Actual dinner estimate from 14-Aug-2026 photo; likely ~1,100\u20131,300 kcal and ~50\u201358 g protein."
+      "notes": "Actual dinner estimate from 14-Aug-2026 photo; likely ~1,100–1,300 kcal and ~50–58 g protein."
     },
     {
       "name": "Spaghetti + tomato stew + chicken",
@@ -540,126 +540,126 @@
       {
         "exercise": "Goblet squat",
         "sets": 3,
-        "reps": "8\u201312",
-        "note": "Legs \u00b7 controlled depth; add load after 12 clean reps on all sets."
+        "reps": "8–12",
+        "note": "Legs · controlled depth; add load after 12 clean reps on all sets."
       },
       {
         "exercise": "Barbell bench press",
         "sets": 3,
-        "reps": "8\u201310",
-        "note": "Chest \u00b7 use safeties/spotter where possible."
+        "reps": "8–10",
+        "note": "Chest · use safeties/spotter where possible."
       },
       {
         "exercise": "One-arm dumbbell row",
         "sets": 3,
-        "reps": "8\u201312/side",
-        "note": "Back \u00b7 pull elbow toward hip; avoid torso twisting."
+        "reps": "8–12/side",
+        "note": "Back · pull elbow toward hip; avoid torso twisting."
       },
       {
         "exercise": "Dumbbell shoulder press",
         "sets": 2,
-        "reps": "8\u201312",
-        "note": "Shoulders \u00b7 brace abdomen; no excessive back arch."
+        "reps": "8–12",
+        "note": "Shoulders · brace abdomen; no excessive back arch."
       },
       {
         "exercise": "Hammer curl",
         "sets": 2,
-        "reps": "10\u201315",
-        "note": "Biceps \u00b7 neutral grip and controlled reps."
+        "reps": "10–15",
+        "note": "Biceps · neutral grip and controlled reps."
       },
       {
         "exercise": "Lying dumbbell triceps extension",
         "sets": 2,
-        "reps": "10\u201315",
-        "note": "Triceps \u00b7 keep upper arms steady."
+        "reps": "10–15",
+        "note": "Triceps · keep upper arms steady."
       }
     ],
     "B": [
       {
         "exercise": "Barbell Romanian deadlift",
         "sets": 3,
-        "reps": "8\u201310",
-        "note": "Legs \u00b7 hip hinge; bar stays close."
+        "reps": "8–10",
+        "note": "Legs · hip hinge; bar stays close."
       },
       {
         "exercise": "Incline dumbbell press",
         "sets": 3,
-        "reps": "8\u201312",
-        "note": "Chest \u00b7 modest incline; shoulders back."
+        "reps": "8–12",
+        "note": "Chest · modest incline; shoulders back."
       },
       {
         "exercise": "Pull-up",
         "sets": 3,
-        "reps": "5\u201310",
-        "note": "Back \u00b7 use once your pull-up bar arrives. Until then substitute One-arm dumbbell row."
+        "reps": "5–10",
+        "note": "Back · use once your pull-up bar arrives. Until then substitute One-arm dumbbell row."
       },
       {
         "exercise": "Barbell/dumbbell hip thrust",
         "sets": 3,
-        "reps": "8\u201312",
-        "note": "Legs/glutes \u00b7 pause and squeeze at the top."
+        "reps": "8–12",
+        "note": "Legs/glutes · pause and squeeze at the top."
       },
       {
         "exercise": "Dumbbell lateral raise",
         "sets": 2,
-        "reps": "12\u201315",
-        "note": "Shoulders \u00b7 light weight, no swinging."
+        "reps": "12–15",
+        "note": "Shoulders · light weight, no swinging."
       },
       {
         "exercise": "Lying leg raise",
         "sets": 2,
-        "reps": "10\u201315",
-        "note": "Abs/Core \u00b7 keep lower back controlled."
+        "reps": "10–15",
+        "note": "Abs/Core · keep lower back controlled."
       }
     ],
     "C": [
       {
         "exercise": "Dumbbell reverse lunge",
         "sets": 3,
-        "reps": "8\u201312/leg",
-        "note": "Legs \u00b7 stable step-back lunge."
+        "reps": "8–12/leg",
+        "note": "Legs · stable step-back lunge."
       },
       {
         "exercise": "Barbell bent-over row",
         "sets": 3,
-        "reps": "8\u201312",
-        "note": "Back \u00b7 stable hip hinge; pull toward lower ribs."
+        "reps": "8–12",
+        "note": "Back · stable hip hinge; pull toward lower ribs."
       },
       {
         "exercise": "Barbell bench press",
         "sets": 2,
-        "reps": "8\u201310",
-        "note": "Chest \u00b7 moderate volume; stop with 1\u20133 reps in reserve."
+        "reps": "8–10",
+        "note": "Chest · moderate volume; stop with 1–3 reps in reserve."
       },
       {
         "exercise": "Dumbbell shoulder press",
         "sets": 2,
-        "reps": "8\u201312",
-        "note": "Shoulders \u00b7 controlled overhead press."
+        "reps": "8–12",
+        "note": "Shoulders · controlled overhead press."
       },
       {
         "exercise": "Close-grip chin-up",
         "sets": 2,
-        "reps": "5\u201310",
-        "note": "Back/biceps \u00b7 use once pull-up bar arrives; optional if fatigued."
+        "reps": "5–10",
+        "note": "Back/biceps · use once pull-up bar arrives; optional if fatigued."
       },
       {
         "exercise": "Hammer curl",
         "sets": 2,
-        "reps": "10\u201315",
-        "note": "Biceps \u00b7 controlled neutral-grip curls."
+        "reps": "10–15",
+        "note": "Biceps · controlled neutral-grip curls."
       },
       {
         "exercise": "Lying dumbbell triceps extension",
         "sets": 2,
-        "reps": "10\u201315",
-        "note": "Triceps \u00b7 smooth elbow extension."
+        "reps": "10–15",
+        "note": "Triceps · smooth elbow extension."
       },
       {
         "exercise": "Lying leg raise",
         "sets": 2,
-        "reps": "10\u201315",
-        "note": "Abs/Core \u00b7 controlled lowering."
+        "reps": "10–15",
+        "note": "Abs/Core · controlled lowering."
       }
     ]
   },
@@ -761,7 +761,7 @@
       "category": "Biceps",
       "exercise": "Alternate dumbbell curl",
       "sets": 2,
-      "reps": "10\u201315",
+      "reps": "10–15",
       "cue": "Curl one dumbbell at a time; keep elbow close to your side.",
       "equipment": "Dumbbells"
     },
@@ -769,7 +769,7 @@
       "category": "Biceps",
       "exercise": "Hammer curl",
       "sets": 2,
-      "reps": "10\u201315",
+      "reps": "10–15",
       "cue": "Use a neutral grip and avoid swinging.",
       "equipment": "Dumbbells"
     },
@@ -777,7 +777,7 @@
       "category": "Biceps",
       "exercise": "Concentration curl",
       "sets": 2,
-      "reps": "10\u201315/side",
+      "reps": "10–15/side",
       "cue": "Brace elbow against inner thigh and curl slowly.",
       "equipment": "Dumbbell + bench"
     },
@@ -785,7 +785,7 @@
       "category": "Biceps",
       "exercise": "Dumbbell curl",
       "sets": 2,
-      "reps": "10\u201315",
+      "reps": "10–15",
       "cue": "Keep elbows near ribs and avoid swinging.",
       "equipment": "Dumbbells"
     },
@@ -793,7 +793,7 @@
       "category": "Triceps",
       "exercise": "DB overhead triceps extension",
       "sets": 2,
-      "reps": "10\u201315",
+      "reps": "10–15",
       "cue": "Keep upper arms still while extending the elbows.",
       "equipment": "Dumbbell"
     },
@@ -801,7 +801,7 @@
       "category": "Triceps",
       "exercise": "Lying dumbbell triceps extension",
       "sets": 2,
-      "reps": "10\u201315",
+      "reps": "10–15",
       "cue": "Keep upper arms steady; bend only at the elbows.",
       "equipment": "Dumbbells + bench"
     },
@@ -809,7 +809,7 @@
       "category": "Triceps",
       "exercise": "Triceps kickback",
       "sets": 2,
-      "reps": "12\u201315/side",
+      "reps": "12–15/side",
       "cue": "Keep upper arm parallel to torso; fully extend elbow.",
       "equipment": "Dumbbell + bench"
     },
@@ -817,7 +817,7 @@
       "category": "Triceps",
       "exercise": "Close-grip bench press",
       "sets": 2,
-      "reps": "8\u201312",
+      "reps": "8–12",
       "cue": "Use a comfortable close grip; keep elbows controlled.",
       "equipment": "Barbell + bench"
     },
@@ -825,7 +825,7 @@
       "category": "Shoulders",
       "exercise": "Dumbbell shoulder press",
       "sets": 2,
-      "reps": "8\u201312",
+      "reps": "8–12",
       "cue": "Brace abdomen and press overhead without excessive back arch.",
       "equipment": "Dumbbells"
     },
@@ -833,7 +833,7 @@
       "category": "Shoulders",
       "exercise": "Arnold press",
       "sets": 2,
-      "reps": "8\u201312",
+      "reps": "8–12",
       "cue": "Rotate smoothly through the press; do not force shoulder range.",
       "equipment": "Dumbbells"
     },
@@ -841,7 +841,7 @@
       "category": "Shoulders",
       "exercise": "Dumbbell lateral raise",
       "sets": 2,
-      "reps": "12\u201315",
+      "reps": "12–15",
       "cue": "Use light weight; raise to shoulder height without swinging.",
       "equipment": "Dumbbells"
     },
@@ -849,7 +849,7 @@
       "category": "Shoulders",
       "exercise": "Dumbbell front raise",
       "sets": 2,
-      "reps": "10\u201315",
+      "reps": "10–15",
       "cue": "Raise under control to about shoulder height.",
       "equipment": "Dumbbells"
     },
@@ -857,7 +857,7 @@
       "category": "Chest",
       "exercise": "Barbell bench press",
       "sets": 3,
-      "reps": "8\u201312",
+      "reps": "8–12",
       "cue": "Shoulder blades back/down, feet planted; lower under control.",
       "equipment": "Barbell + bench"
     },
@@ -865,7 +865,7 @@
       "category": "Chest",
       "exercise": "Incline dumbbell press",
       "sets": 3,
-      "reps": "8\u201312",
+      "reps": "8–12",
       "cue": "Use a modest incline and keep shoulders back.",
       "equipment": "Dumbbells + incline bench"
     },
@@ -873,7 +873,7 @@
       "category": "Chest",
       "exercise": "Dumbbell bench fly",
       "sets": 2,
-      "reps": "10\u201315",
+      "reps": "10–15",
       "cue": "Keep a soft elbow bend; stop before shoulder discomfort.",
       "equipment": "Dumbbells + bench"
     },
@@ -881,7 +881,7 @@
       "category": "Chest",
       "exercise": "Incline dumbbell fly",
       "sets": 2,
-      "reps": "10\u201315",
+      "reps": "10–15",
       "cue": "Use light dumbbells and a modest incline.",
       "equipment": "Dumbbells + incline bench"
     },
@@ -889,7 +889,7 @@
       "category": "Chest",
       "exercise": "Dumbbell squeeze press",
       "sets": 2,
-      "reps": "10\u201315",
+      "reps": "10–15",
       "cue": "Press dumbbells together throughout the movement.",
       "equipment": "Dumbbells + bench"
     },
@@ -897,7 +897,7 @@
       "category": "Chest",
       "exercise": "Dumbbell pullover",
       "sets": 2,
-      "reps": "10\u201315",
+      "reps": "10–15",
       "cue": "Keep ribs controlled and use a comfortable shoulder range.",
       "equipment": "Dumbbell + bench"
     },
@@ -905,7 +905,7 @@
       "category": "Back",
       "exercise": "One-arm dumbbell row",
       "sets": 3,
-      "reps": "8\u201312/side",
+      "reps": "8–12/side",
       "cue": "Support on bench, pull elbow toward hip, avoid torso twisting.",
       "equipment": "Dumbbell + bench"
     },
@@ -913,7 +913,7 @@
       "category": "Back",
       "exercise": "Barbell bent-over row",
       "sets": 3,
-      "reps": "8\u201312",
+      "reps": "8–12",
       "cue": "Hold a stable hip hinge and pull toward lower ribs.",
       "equipment": "Barbell"
     },
@@ -921,7 +921,7 @@
       "category": "Back",
       "exercise": "Reverse fly",
       "sets": 2,
-      "reps": "12\u201315",
+      "reps": "12–15",
       "cue": "Use light weights and move from the rear shoulders.",
       "equipment": "Dumbbells"
     },
@@ -929,7 +929,7 @@
       "category": "Back",
       "exercise": "Dumbbell shrug",
       "sets": 2,
-      "reps": "10\u201315",
+      "reps": "10–15",
       "cue": "Lift shoulders straight up; pause briefly; do not roll.",
       "equipment": "Dumbbells"
     },
@@ -937,7 +937,7 @@
       "category": "Legs",
       "exercise": "Goblet squat",
       "sets": 3,
-      "reps": "8\u201312",
+      "reps": "8–12",
       "cue": "Hold a dumbbell at chest; sit hips down/back; keep heels down.",
       "equipment": "Dumbbell"
     },
@@ -945,7 +945,7 @@
       "category": "Legs",
       "exercise": "Bulgarian split squat",
       "sets": 3,
-      "reps": "8\u201312/leg",
+      "reps": "8–12/leg",
       "cue": "Rear foot on bench, lower with control, drive through front foot.",
       "equipment": "Dumbbells + bench"
     },
@@ -953,7 +953,7 @@
       "category": "Legs",
       "exercise": "Dumbbell reverse lunge",
       "sets": 3,
-      "reps": "8\u201312/leg",
+      "reps": "8–12/leg",
       "cue": "Step back and keep a stable shoulder-width stance.",
       "equipment": "Dumbbells"
     },
@@ -961,7 +961,7 @@
       "category": "Legs",
       "exercise": "Barbell Romanian deadlift",
       "sets": 3,
-      "reps": "8\u201310",
+      "reps": "8–10",
       "cue": "Soft knees, push hips back, keep bar close and spine neutral.",
       "equipment": "Barbell"
     },
@@ -969,7 +969,7 @@
       "category": "Legs",
       "exercise": "Barbell/dumbbell hip thrust",
       "sets": 3,
-      "reps": "8\u201312",
+      "reps": "8–12",
       "cue": "Upper back on bench; squeeze glutes at top without overextending.",
       "equipment": "Barbell/dumbbell + bench"
     },
@@ -977,7 +977,7 @@
       "category": "Legs",
       "exercise": "Standing calf raise",
       "sets": 3,
-      "reps": "12\u201320",
+      "reps": "12–20",
       "cue": "Use full comfortable range and pause at the top.",
       "equipment": "Dumbbells"
     },
@@ -985,7 +985,7 @@
       "category": "Abs/Core",
       "exercise": "Plank",
       "sets": 2,
-      "reps": "30\u201360 sec",
+      "reps": "30–60 sec",
       "cue": "Elbows under shoulders; squeeze abs/glutes and keep hips level.",
       "equipment": "Bodyweight"
     },
@@ -993,7 +993,7 @@
       "category": "Abs/Core",
       "exercise": "Lying leg raise",
       "sets": 2,
-      "reps": "10\u201315",
+      "reps": "10–15",
       "cue": "Keep lower back controlled; lower legs slowly.",
       "equipment": "Bodyweight"
     },
@@ -1001,7 +1001,7 @@
       "category": "Abs/Core",
       "exercise": "Crunch",
       "sets": 2,
-      "reps": "12\u201320",
+      "reps": "12–20",
       "cue": "Lift shoulder blades with your abs; avoid pulling the neck.",
       "equipment": "Bodyweight"
     },
@@ -1009,7 +1009,7 @@
       "category": "Abs/Core",
       "exercise": "Mountain climber",
       "sets": 2,
-      "reps": "20\u201330/side",
+      "reps": "20–30/side",
       "cue": "Keep shoulders over hands and hips steady.",
       "equipment": "Bodyweight"
     },
@@ -1017,7 +1017,7 @@
       "category": "Abs/Core",
       "exercise": "Bicycle crunch",
       "sets": 2,
-      "reps": "12\u201320/side",
+      "reps": "12–20/side",
       "cue": "Rotate through the torso slowly; do not pull the neck.",
       "equipment": "Bodyweight"
     },
@@ -1025,7 +1025,7 @@
       "category": "Back",
       "exercise": "Pull-up",
       "sets": 3,
-      "reps": "5\u201310",
+      "reps": "5–10",
       "cue": "Start from a controlled hang, pull chest toward the bar and lower slowly.",
       "equipment": "Pull-up bar"
     },
@@ -1033,9 +1033,234 @@
       "category": "Back",
       "exercise": "Close-grip chin-up",
       "sets": 3,
-      "reps": "5\u201310",
+      "reps": "5–10",
       "cue": "Use a close underhand grip, keep ribs controlled and pull without swinging.",
       "equipment": "Pull-up bar"
+    },
+    {
+      "category": "Forearms",
+      "exercise": "Seated barbell finger curl",
+      "sets": 2,
+      "reps": "12–20",
+      "cue": "Sit tall, forearms supported on thighs; let the bar roll toward fingers, then curl it back into the palm.",
+      "equipment": "Barbell + bench"
+    },
+    {
+      "category": "Forearms",
+      "exercise": "Wrist rotations",
+      "sets": 2,
+      "reps": "10–15/side",
+      "cue": "Rotate the forearm slowly through a comfortable range; keep the upper arm still.",
+      "equipment": "Bodyweight"
+    },
+    {
+      "category": "Forearms",
+      "exercise": "Seated Zottman curl",
+      "sets": 2,
+      "reps": "10–12",
+      "cue": "Curl palms up, rotate to palms down at the top, then lower slowly.",
+      "equipment": "Dumbbells + bench"
+    },
+    {
+      "category": "Forearms",
+      "exercise": "Dumbbell seated neutral wrist curl",
+      "sets": 2,
+      "reps": "12–20/side",
+      "cue": "Support the forearm, keep a neutral thumb-up grip and move only at the wrist.",
+      "equipment": "Dumbbell + bench"
+    },
+    {
+      "category": "Forearms",
+      "exercise": "Dumbbell wrist curl",
+      "sets": 2,
+      "reps": "12–20/side",
+      "cue": "Support the forearm on your thigh or bench and curl the wrist through a controlled range.",
+      "equipment": "Dumbbell + bench"
+    },
+    {
+      "category": "Forearms",
+      "exercise": "Barbell reverse wrist curl",
+      "sets": 2,
+      "reps": "12–20",
+      "cue": "Forearms supported, palms down; lift the backs of the hands without moving the elbows.",
+      "equipment": "Barbell + bench"
+    },
+    {
+      "category": "Forearms",
+      "exercise": "Dynamic wrist stretch",
+      "sets": 2,
+      "reps": "20–30 sec",
+      "cue": "Move gently between wrist flexion and extension; avoid forcing the range.",
+      "equipment": "Bodyweight"
+    },
+    {
+      "category": "Forearms",
+      "exercise": "Barbell reverse curl",
+      "sets": 2,
+      "reps": "8–12",
+      "cue": "Use an overhand grip, keep elbows close and avoid swinging the bar.",
+      "equipment": "Barbell"
+    },
+    {
+      "category": "Shoulders",
+      "exercise": "Dumbbell push press",
+      "sets": 3,
+      "reps": "6–10",
+      "cue": "Use a small knee dip, drive through the legs and finish with the dumbbells overhead under control.",
+      "equipment": "Dumbbells"
+    },
+    {
+      "category": "Shoulders",
+      "exercise": "Arm circles",
+      "sets": 2,
+      "reps": "20–30 sec",
+      "cue": "Keep the circles smooth and controlled; gradually increase the radius.",
+      "equipment": "Bodyweight"
+    },
+    {
+      "category": "Shoulders",
+      "exercise": "Side arm raises",
+      "sets": 2,
+      "reps": "12–20",
+      "cue": "Raise straight arms to shoulder level without shrugging or swinging.",
+      "equipment": "Bodyweight"
+    },
+    {
+      "category": "Chest",
+      "exercise": "Incline barbell bench press",
+      "sets": 3,
+      "reps": "8–12",
+      "cue": "Use a modest incline, keep shoulder blades set and lower the bar under control.",
+      "equipment": "Barbell + incline bench"
+    },
+    {
+      "category": "Chest",
+      "exercise": "Push-up",
+      "sets": 3,
+      "reps": "8–20",
+      "cue": "Keep a straight line from head to heels; lower chest between the hands and press away.",
+      "equipment": "Bodyweight"
+    },
+    {
+      "category": "Chest",
+      "exercise": "Diamond push-up",
+      "sets": 2,
+      "reps": "6–15",
+      "cue": "Keep hands close, elbows controlled and body rigid; use knees if needed.",
+      "equipment": "Bodyweight"
+    },
+    {
+      "category": "Chest",
+      "exercise": "Decline push-up",
+      "sets": 2,
+      "reps": "8–15",
+      "cue": "Place feet on the bench, keep hips level and lower under control.",
+      "equipment": "Bench + bodyweight"
+    },
+    {
+      "category": "Biceps",
+      "exercise": "Barbell curl",
+      "sets": 3,
+      "reps": "8–12",
+      "cue": "Keep elbows close to the torso and curl without leaning back.",
+      "equipment": "Barbell"
+    },
+    {
+      "category": "Biceps",
+      "exercise": "Waiter curl",
+      "sets": 2,
+      "reps": "10–15",
+      "cue": "Hold one dumbbell by the upper end, keep elbows tucked and curl smoothly.",
+      "equipment": "Dumbbell"
+    },
+    {
+      "category": "Triceps",
+      "exercise": "Barbell JM press",
+      "sets": 2,
+      "reps": "8–12",
+      "cue": "Lower the bar toward the upper chest/neck area by bending the elbows, then extend without flaring excessively.",
+      "equipment": "Barbell + bench"
+    },
+    {
+      "category": "Triceps",
+      "exercise": "Bench dips",
+      "sets": 2,
+      "reps": "8–15",
+      "cue": "Keep shoulders down and elbows tracking back; use a comfortable depth.",
+      "equipment": "Bench + bodyweight"
+    },
+    {
+      "category": "Legs",
+      "exercise": "Dumbbell deadlift",
+      "sets": 3,
+      "reps": "8–12",
+      "cue": "Brace your torso, push hips back and keep dumbbells close to the legs.",
+      "equipment": "Dumbbells"
+    },
+    {
+      "category": "Legs",
+      "exercise": "Dumbbell sumo deadlift",
+      "sets": 3,
+      "reps": "8–12",
+      "cue": "Use a wide stance, keep knees tracking over toes and stand by driving through the floor.",
+      "equipment": "Dumbbells"
+    },
+    {
+      "category": "Legs",
+      "exercise": "Heel-elevated goblet squat",
+      "sets": 3,
+      "reps": "10–15",
+      "cue": "Elevate heels slightly, keep torso tall and squat through a controlled range.",
+      "equipment": "Dumbbell"
+    },
+    {
+      "category": "Legs",
+      "exercise": "Pendulum lunge",
+      "sets": 3,
+      "reps": "8–12/leg",
+      "cue": "Alternate a forward and reverse lunge on the same leg while maintaining balance.",
+      "equipment": "Bodyweight"
+    },
+    {
+      "category": "Legs",
+      "exercise": "Bodyweight standing calf raise",
+      "sets": 3,
+      "reps": "15–25",
+      "cue": "Rise onto the balls of your feet, pause at the top and lower slowly.",
+      "equipment": "Bodyweight"
+    },
+    {
+      "category": "Abs/Core",
+      "exercise": "Body saw plank",
+      "sets": 2,
+      "reps": "8–15",
+      "cue": "From a forearm plank, glide the body slightly backward and forward without losing trunk tension.",
+      "equipment": "Bodyweight"
+    },
+    {
+      "category": "Abs/Core",
+      "exercise": "Hanging leg raise",
+      "sets": 2,
+      "reps": "6–12",
+      "cue": "Hang without swinging, brace your core and raise the legs under control.",
+      "equipment": "Pull-up bar"
+    },
+    {
+      "category": "Full Body",
+      "exercise": "Burpee with push-up",
+      "sets": 2,
+      "reps": "6–12",
+      "cue": "Move from standing to plank, perform a controlled push-up, then return to standing.",
+      "equipment": "Bodyweight"
+    },
+    {
+      "category": "Triceps",
+      "exercise": "Triceps dips on floor",
+      "sets": 2,
+      "reps": "8–15",
+      "cue": "Keep hands behind you on the floor, lift the hips, bend the elbows backward and press up under control.",
+      "equipment": "Bodyweight"
     }
-  ]
+  ],
+  "version": "2.2"
 }
