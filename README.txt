@@ -1,9 +1,9 @@
-LEAN MASS TRACKER V2.1 — CONCEPT UI EDITION
+LEAN MASS TRACKER V2.2 — CONCEPT UI EDITION
 Build: concept-ui-2026-10-03
 
-This build implements the approved V2.1 design concept as the real app interface.
+This build implements the approved V2.2 design concept as the real app interface.
 
-KEY V2.1 CHANGES
+KEY V2.2 CHANGES
 - Rebuilt visual interface to match the approved blue/white concept design.
 - Compact Today dashboard with weekly calendar and four linked metrics:
   calories, protein, workouts and water.
@@ -29,7 +29,7 @@ DATA SAFETY / MIGRATION
 
 GITHUB
 Upload the CONTENTS of this folder to the ROOT of the SAME GitHub Pages repository currently hosting V2.0.
-Do not create a new repository, delete the Home Screen app, or clear Safari website data before confirming V2.1 works.
+Do not create a new repository, delete the Home Screen app, or clear Safari website data before confirming V2.2 works.
 
 PACKAGE FILE COUNT
 89 files — intentionally below 100 files.
