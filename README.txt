@@ -1,63 +1,35 @@
-LEAN MASS TRACKER — PWA V1.3
+LEAN MASS TRACKER V2.1 — CONCEPT UI EDITION
+Build: concept-ui-2026-10-03
 
-Photo-Rich UI upgrade:
-- Generated built-in imagery for the preloaded food library
-- Consistent colourful image treatment instead of text-only meal rows
-- User photo uploads limited to custom meals the user creates
-- Photo-based workout visual cards replacing schematic stick-figure demos
-- Retains V1.2 per-set load/reps/RIR logging, weekly statistics, calendar status, body metrics, offline storage and backup/restore
-- Same localStorage identity as earlier versions to preserve existing data
+This build implements the approved V2.1 design concept as the real app interface.
 
-Deployment:
-Upload the contents of this folder to the existing GitHub Pages repository root and commit.
-The Pages workflow redeploys automatically.
+KEY V2.1 CHANGES
+- Rebuilt visual interface to match the approved blue/white concept design.
+- Compact Today dashboard with weekly calendar and four linked metrics:
+  calories, protein, workouts and water.
+- Water tracking added (quick +250 ml / +500 ml, manual total, adjustable target).
+- Compact Today's Check-in card; full check-in opens as a sheet.
+- Sleep continues to use separate hours + minutes fields.
+- Meals screen is now log-first and photo-rich with Today / Favourites / Custom / Recent tabs.
+- Workout screen is exercise-focused with large animated GIF, cues, sets/reps/rest, exercise navigation and set logging.
+- Workout editor now includes rest time alongside sets, reps and notes.
+- Exercise library has search, muscle filters and supplied GIF demonstrations.
+- Progress has 1W / 1M / 3M / 6M / 1Y views, weight and measurement charts,
+  linked recovery/nutrition metrics, hydration context, training balance and volume.
+- New professional app icon retained from the approved design concept.
 
+DATA SAFETY / MIGRATION
+- Storage key remains: leanMassTrackerV1
+- IndexedDB meal-photo database remains: LeanMassPhotos
+- Existing meals, meal photos, custom meals, favourites, weight logs, body measurements,
+  sleep, workout history, exercise set logs and settings are preserved in place.
+- Migration only adds new fields such as waterMl, waterTarget and workout rest seconds when missing.
+- Historical workout log entries keep their saved exercise names/categories.
+- Export backup still includes state + meal photos.
 
-V1.3 corrected photo build
-- Removed keyword-based meal-photo guessing that could show the wrong food.
-- Every food card now has Add / Replace Photo using camera or photo library.
-- User meal-photo replacements are stored locally in IndexedDB and included in backup.
-- Workout photography is shown only for verified matching exercises.
-- Unverified workout photos are replaced by the correct exercise-specific form guide, preventing misleading exercise imagery.
+GITHUB
+Upload the CONTENTS of this folder to the ROOT of the SAME GitHub Pages repository currently hosting V2.0.
+Do not create a new repository, delete the Home Screen app, or clear Safari website data before confirming V2.1 works.
 
-
-V1.4 — Colour + iPhone Photo Library update
-- Fixed iPhone photo selection: meal photos now use a source sheet with TWO explicit choices:
-  1) Take Photo (camera)
-  2) Choose from Photos (gallery; no capture attribute)
-- The same chooser works for preloaded meal photo replacements and new custom meals.
-- Added category-specific colourful thumbnail placeholders instead of plain/text-only cards.
-- Added more exact built-in food images only where the asset reliably matches the meal.
-- Refreshed cards, quick meal actions, navigation, KPI panels, workout areas and accents with a more colourful Apple-style visual system.
-- Preserves V1.3 local data/storage identity and user photo overrides.
-
-
-V1.5: integrated 89 supplied meal photos, resized/cropped to 720x480 WebP; fixed fallback thumbnail text cropping; removed floating camera overlay; retained camera/gallery replacement.
-
-
-GITHUB-FRIENDLY V1.5 PACKAGE
-- The 89 meal thumbnail images are bundled inside assets/meal-photo-map-v15.json.
-- This removes the need to upload 89 separate meal-photo files.
-- Upload everything inside this folder to the repository in one browser upload.
-- No change to the visible meal images or V1.5 app behaviour.
-
-
-V1.6 — Expanded Workout Library + Progressive Overload
-- Added 33 home-friendly exercises across Biceps, Triceps, Shoulders, Chest, Back, Legs and Abs/Core.
-- Pull-ups and dips are intentionally excluded because the current home setup has no pull-up/dip bars.
-- Added an in-app Exercise Library with category filters and “Add to Workout A/B/C”.
-- User-added exercises can be removed again without changing the core programme.
-- Added original Lean Mass Tracker exercise illustrations; no proprietary images were copied from the other bodybuilding app.
-- Retains per-set Load kg, Reps, RIR, Done, Copy Previous, progression hints and 3-day flexible scheduling.
-- Preserves V1.5 meal photos, meal logs, check-ins, backups and local/offline storage.
-
-
-V1.7 — Animated Workout Demos + Progress Analytics
-- Integrated 15 exact user-supplied animated workout GIF demos.
-- Added Pull-up and Close-grip chin-up for the incoming home pull-up bar; dips remain excluded.
-- Rearranged Workout A/B/C into a balanced 3-day full-body lean-mass programme.
-- Added 1-week / 2-week / 4-week training-balance progress bars by muscle group.
-- Added logged training-volume totals by muscle group (load × reps for completed sets).
-- Added a 12-week weekly-average calorie-intake chart with calorie-target comparison.
-- Preserves V1.6 meal photos, nutrition logs, weight/body charts, workout logs, local/offline storage and backups.
-- Historical workout logs are migrated with exercise names before the A/B/C programme is rearranged.
+PACKAGE FILE COUNT
+89 files — intentionally below 100 files.
