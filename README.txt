@@ -33,3 +33,9 @@ Do not create a new repository, delete the Home Screen app, or clear Safari webs
 
 PACKAGE FILE COUNT
 89 files — intentionally below 100 files.
+
+
+GIF DISPLAY FIX 1:
+- Newly supplied workout GIFs are embedded directly in app.js, preventing GitHub Pages path/upload failures.
+- User data storage remains unchanged: leanMassTrackerV1 + LeanMassPhotos.
+- Service worker cache bumped so iOS fetches this corrected build.
